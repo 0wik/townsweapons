@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GTA V Weapon Stats</title>
+  <style>
+    body {
+      background-color: #0f0f0f;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+    }
+
+    .weapon-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .weapon {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #1a1a1a;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .weapon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .weapon:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    }
+
+    .stats {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.85);
+      padding: 10px;
+      font-size: 13px;
+      display: none;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .weapon:hover .stats {
+      display: block;
+    }
+
+    .bar {
+      background-color: #333;
+      border-radius: 5px;
+      overflow: hidden;
+      height: 8px;
+      margin-top: 5px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 5px;
+      animation: fill 1s ease-in-out forwards;
+    }
+
+    .comparison {
+      margin-top: 40px;
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .comparison-panel {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      min-height: 200px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .comparison-panel h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
+    }
+
+    .comparison-panel.updated {
+      animation: pulse 0.5s;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0px rgba(255,255,255,0); }
+      50% { box-shadow: 0 0 15px rgba(0,255,180,0.4); }
+      100% { box-shadow: 0 0 0px rgba(255,255,255,0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align:center;">FiveM Weapon Stats</h1>
+  <div class="weapon-grid">
+    <div class="weapon" onclick="compareWeapon('Benelli', '18–28', 70, 25, 'Tier 1 / Level 5')">
+      <img src="https://imgur.com/E0cmGx5.png" alt="Benelli">
+      <div class="stats">
+        <strong>Benelli</strong><br>Damage: 18–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5
+      </div>
+    </div>
+    <div class="weapon" onclick="compareWeapon('Glock 43X', '16–25', 60, 42, 'Tier 1 / Level 5')">
+      <img src="https://imgur.com/CuCPI1O.png" alt="Glock 43X">
+      <div class="stats">
+        <strong>Glock 43X</strong><br>Damage: 16–25<br>Reload Speed: 0.42<br>Tier: Tier 1 / Level 5
+      </div>
+    </div>
+    <div class="weapon" onclick="compareWeapon('Glock 19X', '17–26', 65, 55, 'Tier 1 / Level 5')">
+      <img src="https://imgur.com/6kXKKzm.png" alt="Glock 19X">
+      <div class="stats">
+        <strong>Glock 19X</strong><br>Damage: 17–26<br>Reload Speed: 0.55<br>Tier: Tier 1 / Level 5
+      </div>
+    </div>
+    <div class="weapon" onclick="compareWeapon('Ghost Glock', '22–30', 85, 70, 'Tier 1 / Level 5')">
+      <img src="https://imgur.com/PWifbp1.png" alt="Ghost Glock">
+      <div class="stats">
+        <strong>Ghost Glock</strong><br>Damage: 22–30<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5
+      </div>
+    </div>
+    <div class="weapon" onclick="compareWeapon('Glock 17', '18–27', 70, 60, 'Tier 1 / Level 5')">
+      <img src="https://imgur.com/hZcx4xL.png" alt="Glock 17">
+      <div class="stats">
+        <strong>Glock 17</strong><br>Damage: 18–27<br>Reload Speed: 0.60<br>Tier: Tier 1 / Level 5
+      </div>
+    </div>
+    <div class="weapon" onclick="compareWeapon('S&W 657', '15–24', 58, 70, 'Tier 1 / Level 5')">
+      <img src="https://imgur.com/i6yHy7h.png" alt="S&W 657">
+      <div class="stats">
+        <strong>S&amp;W 657</strong><br>Damage: 15–24<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5
+      </div>
+    </div>
+    <div class="weapon" onclick="compareWeapon('Walther PPK', '19–28', 75, 25, 'Tier 1 / Level 5')">
+      <img src="https://imgur.com/nCnVbqW.png" alt="Walther PPK">
+      <div class="stats">
+        <strong>Walther PPK</strong><br>Damage: 19–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5
+      </div>
+    </div>
+  </div>
+
+  <div class="comparison">
+    <div class="comparison-panel" id="compare1">
+      <h3>Weapon 1</h3>
+      <p>Select a weapon...</p>
+    </div>
+    <div class="comparison-panel" id="compare2">
+      <h3>Weapon 2</h3>
+      <p>Select a weapon...</p>
+    </div>
+  </div>
+
+  <script>
+    let compareCount = 0;
+    function compareWeapon(name, damage, dmgBar, reloadBar, tier) {
+      const content = \`
+        <strong>\${name}</strong><br>
+        Damage: \${damage}
+        <div class="bar"><div class="bar-fill" style="width:\${dmgBar}%; background-color:#28a745;"></div></div>
+        Reload Speed: \${reloadBar}
+        <div class="bar"><div class="bar-fill" style="width:\${reloadBar}%; background-color:#ffc107;"></div></div>
+        Tier: \${tier}
+      \`;
+      const panelId = compareCount % 2 === 0 ? "compare1" : "compare2";
+      const panel = document.getElementById(panelId);
+      panel.innerHTML = "<h3>Weapon " + (compareCount % 2 + 1) + "</h3><p>" + content + "</p>";
+      panel.classList.remove("updated");
+      void panel.offsetWidth;
+      panel.classList.add("updated");
+      compareCount++;
+    }
+  </script>
+
+</body>
+</html>
