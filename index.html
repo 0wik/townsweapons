@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GTA V Weapon Stats</title>
+  <style>
+    body {
+      background-color: #0e0e0e;
+      color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .weapon-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .weapon {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .weapon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .weapon:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 255, 180, 0.2);
+    }
+
+    .stats {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      font-size: 13px;
+      display: none;
+      z-index: 1;
+    }
+
+    .weapon:hover .stats {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .comparison {
+      margin-top: 40px;
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .comparison-panel {
+      background: #1b1b1b;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      min-height: 200px;
+      box-shadow: 0 0 10px rgba(0, 255, 180, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .comparison-panel.animate {
+      animation: pulse 0.5s ease;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    .comparison-panel h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+
+    .stat-bar {
+      margin: 5px 0;
+    }
+
+    .stat-bar label {
+      font-size: 11px;
+      color: #bbb;
+      display: block;
+    }
+
+    .bar-bg {
+      background: #333;
+      border-radius: 4px;
+      height: 6px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      background: #00ffaa;
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="weapon-grid">
+    <div class="weapon" onclick="compareWeapon('Benelli', 80, 30, 'Tier 1 / Level 5')">
+      <img src="https://imgur.com/E0cmGx5.png" alt="Benelli">
+      <div class="stats">
+        <strong>Benelli</strong><br>
+        <div class="stat-bar"><label>Damage</label><div class="bar-bg"><div class="bar-fill" style="width: 80%;"></div></div></div>
+        <div class="stat-bar"><label>Reload</label><div class="bar-bg"><div class="bar-fill" style="width: 30%; background:#ffaa00;"></div></div></div>
+        Tier: Tier 1 / Level 5
+      </div>
+    </div>
+    <div class="weapon" onclick="compareWeapon('Glock 43X', 60, 40, 'Tier 1 / Level 5')">
+      <img src="https://imgur.com/CuCPI1O.png" alt="Glock 43X">
+      <div class="stats">
+        <strong>Glock 43X</strong><br>
+        <div class="stat-bar"><label>Damage</label><div class="bar-bg"><div class="bar-fill" style="width: 60%;"></div></div></div>
+        <div class="stat-bar"><label>Reload</label><div class="bar-bg"><div class="bar-fill" style="width: 40%; background:#ffaa00;"></div></div></div>
+        Tier: Tier 1 / Level 5
+      </div>
+    </div>
+  </div>
+
+  <div class="comparison">
+    <div class="comparison-panel" id="compare1">
+      <h3>Weapon 1</h3>
+      <p>Select a weapon...</p>
+    </div>
+    <div class="comparison-panel" id="compare2">
+      <h3>Weapon 2</h3>
+      <p>Select a weapon...</p>
+    </div>
+  </div>
+
+  <script>
+    let compareCount = 0;
+    function compareWeapon(name, damage, reload, tier) {
+      const content = \`<strong>\${name}</strong><br>
+        <div class="stat-bar"><label>Damage</label><div class="bar-bg"><div class="bar-fill" style="width: \${damage}%;"></div></div></div>
+        <div class="stat-bar"><label>Reload</label><div class="bar-bg"><div class="bar-fill" style="width: \${reload}%; background:#ffaa00;"></div></div></div>
+        Tier: \${tier}\`;
+      const panelId = compareCount % 2 === 0 ? "compare1" : "compare2";
+      const panel = document.getElementById(panelId);
+      panel.innerHTML = '<h3>' + (compareCount % 2 === 0 ? 'Weapon 1' : 'Weapon 2') + '</h3><p>' + content + '</p>';
+      panel.classList.remove('animate');
+      void panel.offsetWidth; // Trigger reflow for animation restart
+      panel.classList.add('animate');
+      compareCount++;
+    }
+  </script>
+
+</body>
+</html>
