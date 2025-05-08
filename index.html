@@ -46,11 +46,11 @@
       color: #0e0e0e;
     }
 
-    .weapon-section, .drug-section {
+    .weapon-section {
       margin-left: 150px;
     }
 
-    .weapon-grid, .drug-grid {
+    .weapon-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
@@ -58,7 +58,7 @@
       margin-top: 20px;
     }
 
-    .weapon, .drug {
+    .weapon {
       position: relative;
       width: 200px;
       height: 200px;
@@ -73,7 +73,7 @@
       justify-content: center;
     }
 
-    .weapon img, .drug img {
+    .weapon img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -82,7 +82,7 @@
       transition: box-shadow 0.3s ease;
     }
 
-    .weapon:hover img, .drug:hover img {
+    .weapon:hover img {
       box-shadow: 0 0 15px #50fa7b;
     }
 
@@ -97,7 +97,7 @@
       display: none;
     }
 
-    .weapon:hover .stats, .drug:hover .stats {
+    .weapon:hover .stats {
       display: block;
     }
 
@@ -142,6 +142,57 @@
     .hidden {
       display: none;
     }
+
+    .drug-section {
+      margin-top: 40px;
+    }
+
+    .drug-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .drug {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .drug img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #282828;
+    }
+
+    .drug:hover img {
+      box-shadow: 0 0 15px #50fa7b;
+    }
+
+    .drug .stats {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .drug:hover .stats {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -149,47 +200,82 @@
   <h1>FiveM Weapon Stats</h1>
 
   <div class="sidebar">
-    <button onclick="showSection('tier1')">Show T1</button>
-    <button onclick="showSection('tier2')">Show T2</button>
-    <button onclick="showSection('drugs')">Drugs</button>
+    <button onclick="showTier('tier1')">Show T1</button>
+    <button onclick="showTier('tier2')">Show T2</button>
+    <button onclick="showTier('drugs')">Show Drugs</button>
   </div>
 
   <div class="weapon-section">
     <div id="tier1" class="tier">
       <div class="section-title">Tier 1 Weapons</div>
       <div class="weapon-grid">
-        <!-- Tier 1 weapons -->
         <div class="weapon" onclick="compareWeapon('Benelli', '18–28', '0.25', 'Tier 1 / Level 5')">
           <img src="https://imgur.com/E0cmGx5.png" alt="Benelli">
           <div class="stats"><strong>Benelli</strong><br>Damage: 18–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
         </div>
-        <!-- Add more Tier 1 weapons based on your original list -->
+        <div class="weapon" onclick="compareWeapon('Glock 43X', '16–25', '0.42', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/CuCPI1O.png" alt="Glock 43X">
+          <div class="stats"><strong>Glock 43X</strong><br>Damage: 16–25<br>Reload Speed: 0.42<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Glock 19X', '17–26', '0.55', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/6kXKKzm.png" alt="Glock 19X">
+          <div class="stats"><strong>Glock 19X</strong><br>Damage: 17–26<br>Reload Speed: 0.55<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Ghost Glock', '22–30', '0.7', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/PWifbp1.png" alt="Ghost Glock">
+          <div class="stats"><strong>Ghost Glock</strong><br>Damage: 22–30<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Glock 17', '18–27', '0.60', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/hZcx4xL.png" alt="Glock 17">
+          <div class="stats"><strong>Glock 17</strong><br>Damage: 18–27<br>Reload Speed: 0.60<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('S&W 657', '15–24', '0.7', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/i6yHy7h.png" alt="S&W 657">
+          <div class="stats"><strong>S&amp;W 657</strong><br>Damage: 15–24<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Walther PPK', '19–28', '0.25', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/nCnVbqW.png" alt="Walther PPK">
+          <div class="stats"><strong>Walther PPK</strong><br>Damage: 19–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
+        </div>
       </div>
     </div>
 
     <div id="tier2" class="tier hidden">
       <div class="section-title">Tier 2 Weapons</div>
       <div class="weapon-grid">
-        <!-- Tier 2 weapons -->
-        <div class="weapon" onclick="compareWeapon('M4 Carbine', '40–60', '0.35', 'Tier 2 / Level 8')">
-          <img src="https://imgur.com/xxx.png" alt="M4 Carbine">
-          <div class="stats"><strong>M4 Carbine</strong><br>Damage: 40–60<br>Reload Speed: 0.35<br>Tier: Tier 2 / Level 8</div>
+        <div class="weapon" onclick="compareWeapon('Remington Model 870', '35–70', '0.45', 'Tier 2 / Level 10')">
+          <div class="stats"><strong>Remington Model 870</strong><br>Damage: 35–70<br>Reload Speed: 0.45<br>Tier: Tier 2 / Level 10</div>
         </div>
-        <!-- Add more Tier 2 weapons based on your original list -->
+        <div class="weapon" onclick="compareWeapon('MAC-10', '18–26', '0.7', 'Tier 2 / Level 9')">
+          <div class="stats"><strong>MAC-10</strong><br>Damage: 18–26<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 9</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('1911', '25–35', '0.5', 'Tier 2 / Level 8')">
+          <div class="stats"><strong>1911</strong><br>Damage: 25–35<br>Reload Speed: 0.5<br>Tier: Tier 2 / Level 8</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Lebedev PL14', '22–32', '0.8', 'Tier 2 / Level 7')">
+          <div class="stats"><strong>Lebedev PL14</strong><br>Damage: 22–32<br>Reload Speed: 0.8<br>Tier: Tier 2 / Level 7</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('TEC-9', '20–28', '0.7', 'Tier 2 / Level 10')">
+          <div class="stats"><strong>TEC-9</strong><br>Damage: 20–28<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 10</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="drug-section">
-    <div id="drugs" class="tier hidden">
-      <div class="section-title">Drugs</div>
-      <div class="drug-grid">
-        <!-- Drugs -->
-        <div class="drug" onclick="compareDrug('Marijuana', '1-5 HP Regen', '5s', 'Tier 1 / Level 5')">
-          <img src="https://imgur.com/xxx.png" alt="Marijuana">
-          <div class="stats"><strong>Marijuana</strong><br>Effect: 1-5 HP Regen<br>Duration: 5s<br>Tier: Tier 1 / Level 5</div>
-        </div>
-        <!-- Add more drugs as needed -->
+  <div id="drugs" class="drug-section hidden">
+    <div class="section-title">Drugs</div>
+    <div class="drug-grid">
+      <div class="drug">
+        <img src="https://imgur.com/aFq3fhT.png" alt="Cocaine">
+        <div class="stats"><strong>Cocaine</strong><br>Effect: Increased Speed<br>Duration: 180s<br>Tier: Tier 1 / Level 5</div>
+      </div>
+      <div class="drug">
+        <img src="https://imgur.com/X1Of0Pz.png" alt="Meth">
+        <div class="stats"><strong>Meth</strong><br>Effect: Increased Damage<br>Duration: 180s<br>Tier: Tier 1 / Level 5</div>
+      </div>
+      <div class="drug">
+        <img src="https://imgur.com/Mjd4W2I.png" alt="Marijuana">
+        <div class="stats"><strong>Marijuana</strong><br>Effect: Decreased Vision<br>Duration: 120s<br>Tier: Tier 2 / Level 10</div>
       </div>
     </div>
   </div>
@@ -206,28 +292,21 @@
   </div>
 
   <script>
-    function showSection(sectionId) {
-      // Hide all sections first
+    function showTier(tierId) {
       document.querySelectorAll('.tier').forEach(t => t.classList.add('hidden'));
-      // Show the selected section
-      document.getElementById(sectionId).classList.remove('hidden');
+      document.querySelectorAll('.drug-section').forEach(d => d.classList.add('hidden'));
+      document.getElementById(tierId).classList.remove('hidden');
     }
 
     let compareCount = 0;
     function compareWeapon(name, damage, reload, tier) {
       const content = `<strong>${name}</strong><br>Damage: ${damage}<br>Reload Speed: ${reload}<br>Tier: ${tier}`;
-      if (compareCount < 2) {
-        document.querySelector(`#compare${compareCount + 1}`).innerHTML = '<h3>Weapon ' + (compareCount + 1) + '</h3><p>' + content + '</p>';
-        compareCount++;
+      if (compareCount % 2 === 0) {
+        document.getElementById('compare1').innerHTML = '<h3>Weapon 1</h3><p>' + content + '</p>';
+      } else {
+        document.getElementById('compare2').innerHTML = '<h3>Weapon 2</h3><p>' + content + '</p>';
       }
-    }
-
-    function compareDrug(name, effect, duration, tier) {
-      const content = `<strong>${name}</strong><br>Effect: ${effect}<br>Duration: ${duration}<br>Tier: ${tier}`;
-      if (compareCount < 2) {
-        document.querySelector(`#compare${compareCount + 1}`).innerHTML = '<h3>Drug ' + (compareCount + 1) + '</h3><p>' + content + '</p>';
-        compareCount++;
-      }
+      compareCount++;
     }
   </script>
 
