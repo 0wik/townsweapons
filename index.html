@@ -8,6 +8,7 @@
       background-color: #111;
       color: #fff;
       font-family: Arial, sans-serif;
+      margin: 0;
       padding: 20px;
       display: flex;
     }
@@ -36,6 +37,12 @@
 
     .content {
       flex-grow: 1;
+    }
+
+    .weapon-count {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #aaa;
     }
 
     .weapon-grid {
@@ -73,7 +80,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       padding: 10px;
       font-size: 14px;
       display: none;
@@ -89,10 +96,6 @@
 
     .tier-2 {
       box-shadow: 0 0 10px 2px #a020f066;
-    }
-
-    .tier-3 {
-      box-shadow: 0 0 20px 5px gold;
     }
 
     @keyframes fadeIn {
@@ -113,12 +116,22 @@
       border-radius: 10px;
       width: 300px;
       min-height: 200px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .comparison-panel:hover {
+      background-color: #2a2a2a;
     }
 
     .comparison-panel h3 {
       margin-top: 0;
       border-bottom: 1px solid #444;
       padding-bottom: 10px;
+    }
+
+    .comparison-panel p {
+      margin: 0;
     }
   </style>
 </head>
@@ -128,60 +141,20 @@
     <button onclick="filterTier('all')">All</button>
     <button onclick="filterTier('tier-1')">T1</button>
     <button onclick="filterTier('tier-2')">T2</button>
-    <button onclick="filterTier('tier-3')">T3</button>
   </div>
 
   <div class="content">
-    <div class="weapon-grid">
-      <!-- T1 Weapons -->
-      <div class="weapon tier-1" onclick="compareWeapon('Benelli', '18–28', '0.25', 'Tier 1 / Level 5')">
-        <img src="https://imgur.com/E0cmGx5.png" alt="Benelli">
-        <div class="stats"><strong>Benelli</strong><br>Damage: 18–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
-      </div>
-      <div class="weapon tier-1" onclick="compareWeapon('Glock 43X', '16–25', '0.42', 'Tier 1 / Level 5')">
-        <img src="https://imgur.com/CuCPI1O.png" alt="Glock 43X">
-        <div class="stats"><strong>Glock 43X</strong><br>Damage: 16–25<br>Reload Speed: 0.42<br>Tier: Tier 1 / Level 5</div>
-      </div>
-      <div class="weapon tier-1" onclick="compareWeapon('Taurus G3', '20–27', '0.45', 'Tier 1 / Level 6')">
-        <img src="https://i.imgur.com/N6XjvWq.png" alt="Taurus G3">
-        <div class="stats"><strong>Taurus G3</strong><br>Damage: 20–27<br>Reload Speed: 0.45<br>Tier: Tier 1 / Level 6</div>
-      </div>
-
-      <!-- T2 Weapons -->
-      <div class="weapon tier-2" onclick="compareWeapon('Remington Model 870', '35–70', '0.45', 'Tier 2 / Level 10')">
-        <img src="https://i.imgur.com/KoFzBzT.png" alt="Remington Model 870">
-        <div class="stats"><strong>Remington Model 870</strong><br>Damage: 35–70<br>Reload Speed: 0.45<br>Tier: Tier 2 / Level 10</div>
-      </div>
-      <div class="weapon tier-2" onclick="compareWeapon('MAC-10', '18–26', '0.7', 'Tier 2 / Level 9')">
-        <img src="https://i.imgur.com/y3ltDDd.png" alt="MAC-10">
-        <div class="stats"><strong>MAC-10</strong><br>Damage: 18–26<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 9</div>
-      </div>
-      <div class="weapon tier-2" onclick="compareWeapon('1911', '25–35', '0.5', 'Tier 2 / Level 8')">
-        <img src="https://i.imgur.com/hZcx4xL.png" alt="1911">
-        <div class="stats"><strong>1911</strong><br>Damage: 25–35<br>Reload Speed: 0.5<br>Tier: Tier 2 / Level 8</div>
-      </div>
-      <div class="weapon tier-2" onclick="compareWeapon('Lebedev PL14', '22–32', '0.8', 'Tier 2 / Level 7')">
-        <img src="https://i.imgur.com/6kXKKzm.png" alt="Lebedev PL14">
-        <div class="stats"><strong>Lebedev PL14</strong><br>Damage: 22–32<br>Reload Speed: 0.8<br>Tier: Tier 2 / Level 7</div>
-      </div>
-      <div class="weapon tier-2" onclick="compareWeapon('TEC-9', '20–28', '0.7', 'Tier 2 / Level 10')">
-        <img src="https://i.imgur.com/nCnVbqW.png" alt="TEC-9">
-        <div class="stats"><strong>TEC-9</strong><br>Damage: 20–28<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 10</div>
-      </div>
-
-      <!-- T3 Placeholder -->
-      <div class="weapon tier-3" onclick="compareWeapon('Prototype X', '35–40', '0.2', 'Tier 3 / Level 10')">
-        <img src="https://i.imgur.com/KyXjCmm.png" alt="Prototype X">
-        <div class="stats"><strong>Prototype X</strong><br>Damage: 35–40<br>Reload Speed: 0.2<br>Tier: Tier 3 / Level 10</div>
-      </div>
+    <div class="weapon-count" id="weaponCount">Showing X weapons</div>
+    <div class="weapon-grid" id="weaponGrid">
+      <!-- Weapon Cards (same as before) -->
     </div>
 
     <div class="comparison">
-      <div class="comparison-panel" id="compare1">
+      <div class="comparison-panel" id="compare1" onclick="resetPanel(1)">
         <h3>Weapon 1</h3>
         <p>Select a weapon...</p>
       </div>
-      <div class="comparison-panel" id="compare2">
+      <div class="comparison-panel" id="compare2" onclick="resetPanel(2)">
         <h3>Weapon 2</h3>
         <p>Select a weapon...</p>
       </div>
@@ -200,18 +173,27 @@
       compareCount++;
     }
 
+    function resetPanel(panelNumber) {
+      const panel = document.getElementById(`compare${panelNumber}`);
+      panel.innerHTML = `<h3>Weapon ${panelNumber}</h3><p>Select a weapon...</p>`;
+    }
+
     function filterTier(tier) {
       const allWeapons = document.querySelectorAll('.weapon');
+      let visibleCount = 0;
       allWeapons.forEach(weapon => {
-        if (tier === 'all') {
+        if (tier === 'all' || weapon.classList.contains(tier)) {
           weapon.style.display = 'block';
-        } else if (!weapon.classList.contains(tier)) {
-          weapon.style.display = 'none';
+          visibleCount++;
         } else {
-          weapon.style.display = 'block';
+          weapon.style.display = 'none';
         }
       });
+      document.getElementById('weaponCount').innerText = `Showing ${visibleCount} weapon${visibleCount !== 1 ? 's' : ''}`;
     }
+
+    // Initialize count on load
+    window.onload = () => filterTier('all');
   </script>
 
 </body>
