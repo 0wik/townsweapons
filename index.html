@@ -20,6 +20,27 @@
       font-weight: 600;
     }
 
+    .weapon-sections {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .section {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .section h2 {
+      text-align: center;
+      color: #ff79c6;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 5px;
+    }
+
     .weapon-grid {
       display: flex;
       flex-wrap: wrap;
@@ -36,6 +57,10 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
       animation: fadeIn 0.8s ease;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .weapon img {
@@ -76,6 +101,7 @@
       display: flex;
       gap: 40px;
       justify-content: center;
+      flex-wrap: wrap;
     }
 
     .comparison-panel {
@@ -99,47 +125,32 @@
 
   <h1>FiveM Weapon Stats</h1>
 
-  <div class="weapon-grid">
-    <div class="weapon" onclick="compareWeapon('Benelli', '18–28', '0.25', 'Tier 1 / Level 5')">
-      <img src="https://imgur.com/E0cmGx5.png" alt="Benelli">
-      <div class="stats">
-        <strong>Benelli</strong><br>Damage: 18–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5
+  <div class="weapon-sections">
+    <div class="section">
+      <h2>Tier 2 Weapons</h2>
+      <div class="weapon-grid">
+        <div class="weapon" onclick="compareWeapon('Remington Model 870', '35–70', '0.45', 'Tier 2 / Level 10')">
+          <div class="stats"><strong>Remington Model 870</strong><br>Damage: 35–70<br>Reload Speed: 0.45<br>Tier: Tier 2 / Level 10</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('MAC-10', '18–26', '0.7', 'Tier 2 / Level 9')">
+          <div class="stats"><strong>MAC-10</strong><br>Damage: 18–26<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 9</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('1911', '25–35', '0.5', 'Tier 2 / Level 8')">
+          <div class="stats"><strong>1911</strong><br>Damage: 25–35<br>Reload Speed: 0.5<br>Tier: Tier 2 / Level 8</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Lebedev PL14', '22–32', '0.8', 'Tier 2 / Level 7')">
+          <div class="stats"><strong>Lebedev PL14</strong><br>Damage: 22–32<br>Reload Speed: 0.8<br>Tier: Tier 2 / Level 7</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('TEC-9', '20–28', '0.7', 'Tier 2 / Level 10')">
+          <div class="stats"><strong>TEC-9</strong><br>Damage: 20–28<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 10</div>
+        </div>
       </div>
     </div>
-    <div class="weapon" onclick="compareWeapon('Glock 43X', '16–25', '0.42', 'Tier 1 / Level 5')">
-      <img src="https://imgur.com/CuCPI1O.png" alt="Glock 43X">
-      <div class="stats">
-        <strong>Glock 43X</strong><br>Damage: 16–25<br>Reload Speed: 0.42<br>Tier: Tier 1 / Level 5
-      </div>
-    </div>
-    <div class="weapon" onclick="compareWeapon('Glock 19X', '17–26', '0.55', 'Tier 1 / Level 5')">
-      <img src="https://imgur.com/6kXKKzm.png" alt="Glock 19X">
-      <div class="stats">
-        <strong>Glock 19X</strong><br>Damage: 17–26<br>Reload Speed: 0.55<br>Tier: Tier 1 / Level 5
-      </div>
-    </div>
-    <div class="weapon" onclick="compareWeapon('Ghost Glock', '22–30', '0.7', 'Tier 1 / Level 5')">
-      <img src="https://imgur.com/PWifbp1.png" alt="Ghost Glock">
-      <div class="stats">
-        <strong>Ghost Glock</strong><br>Damage: 22–30<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5
-      </div>
-    </div>
-    <div class="weapon" onclick="compareWeapon('Glock 17', '18–27', '0.60', 'Tier 1 / Level 5')">
-      <img src="https://imgur.com/hZcx4xL.png" alt="Glock 17">
-      <div class="stats">
-        <strong>Glock 17</strong><br>Damage: 18–27<br>Reload Speed: 0.60<br>Tier: Tier 1 / Level 5
-      </div>
-    </div>
-    <div class="weapon" onclick="compareWeapon('S&W 657', '15–24', '0.7', 'Tier 1 / Level 5')">
-      <img src="https://imgur.com/i6yHy7h.png" alt="S&W 657">
-      <div class="stats">
-        <strong>S&amp;W 657</strong><br>Damage: 15–24<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5
-      </div>
-    </div>
-    <div class="weapon" onclick="compareWeapon('Walther PPK', '19–28', '0.25', 'Tier 1 / Level 5')">
-      <img src="https://imgur.com/nCnVbqW.png" alt="Walther PPK">
-      <div class="stats">
-        <strong>Walther PPK</strong><br>Damage: 19–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5
+    <!-- Tier 1 section placeholder, will be populated with weapons later -->
+    <div class="section">
+      <h2>Tier 1 Weapons</h2>
+      <div class="weapon-grid">
+        <!-- Existing weapons go here -->
       </div>
     </div>
   </div>
