@@ -6,196 +6,203 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #0e0e0e;
-      color: #e0e0e0;
       font-family: 'Orbitron', sans-serif;
-      padding: 20px;
+      padding: 0;
       margin: 0;
     }
-    body.light-mode {
-      background-color: #f6f6f6;
-      color: #23263a;
+    body.dark-mode {
+      background: #0e0e0e;
+      color: #e0e0e0;
     }
-    body.light-mode .sidebar button {
-      background-color: #f6f6f6;
+    body.dark-mode h1 {
+      color: #a259e6;
+    }
+    body.dark-mode .sidebar button {
+      background: #23263a;
       color: #a259e6;
       border: 2px solid #a259e6;
     }
-    body.light-mode .sidebar button:hover {
-      background-color: #a259e6;
+    body.dark-mode .sidebar button:hover {
+      background: #a259e6;
       color: #fff;
     }
-    body.light-mode .weapon-section {
-      color: #23263a;
+    body.dark-mode .weapon-section {
+      color: #e0e0e0;
     }
-    body.light-mode .weapon {
-      background: #fff;
-      border: 2px solid #a259e6 !important;
+    body.dark-mode .weapon {
+      background: #23263a;
+      border: 1.5px solid #444;
     }
-    body.light-mode .weapon img {
-      border: 2px solid #e0e0e0;
+    body.dark-mode .weapon img {
+      border: 2px solid #282828;
     }
-    body.light-mode .weapon.t1 {
-      border: 2.5px solid #3498db !important;
-      box-shadow: 0 0 15px #3498db33;
+    body.dark-mode .stats {
+      background: rgba(0,0,0,0.8);
+      color: #ffd700;
     }
-    body.light-mode .weapon.t2 {
-      border: 2.5px solid #ffd700 !important;
-      box-shadow: 0 0 15px #ffd70033;
-    }
-    body.light-mode .stats {
-      background: rgba(255,255,255,0.92);
-      color: #23263a;
-    }
-    body.light-mode .section-title {
+    body.dark-mode .section-title {
       color: #a259e6;
-      border-bottom: 1px solid #bbb;
+      border-bottom: 1px solid #444;
     }
-    body.light-mode table, body.light-mode th, body.light-mode td {
-      border: 1px solid #bbb;
+    body.dark-mode table, body.dark-mode th, body.dark-mode td {
+      border: 1px solid #444;
     }
-    body.light-mode th {
-      background-color: #e0e0e0;
-      color: #a259e6;
+    body.dark-mode th, body.dark-mode td {
+      background: #23263a;
+      color: #e0e0e0;
+      border: 1px solid #444;
     }
-    body.light-mode .comparison-panel {
-      background: #f6f6f6;
-      color: #23263a;
+    body.dark-mode th {
+      background: #181a20;
+      color: #ffd700;
+    }
+    body.dark-mode .comparison-panel {
+      background: #23263a;
+      color: #ffd700;
       box-shadow: 0 0 10px #a259e622;
+      border: 1.5px solid #444;
     }
-    body.light-mode .info-tab {
-      background: linear-gradient(135deg, #e0e0e0 70%, #fff 100%);
-      color: #23263a;
-      border: 2px solid #bbb;
+    body.dark-mode .info-tab {
+      background: linear-gradient(135deg, #181a20ee 70%, #23263a 100%);
+      color: #8be9fd;
+      border: 2px solid #444;
     }
-    body.light-mode .info-tab:hover, body.light-mode .info-tab:focus {
-      background: linear-gradient(135deg, #fff 80%, #e0e0e0 100%);
-      color: #a259e6;
+    body.dark-mode .info-tab:hover, body.dark-mode .info-tab:focus {
+      background: linear-gradient(135deg, #23263a 80%, #181a20ee 100%);
+      color: #fff;
     }
-    body.light-mode .info-popup {
-      background: linear-gradient(135deg, #fff 80%, #e0e0e0 100%);
-      color: #23263a;
-      border: 1.5px solid #bbb;
+    body.dark-mode .info-popup {
+      background: linear-gradient(135deg, #23263a 80%, #181a20ee 100%);
+      color: #fff;
+      border: 1.5px solid #444;
     }
-    body.light-mode #toggle-btn {
-      background: #ffd700;
-      color: #23263a;
-      border: 1.5px solid #a259e6;
+    body.dark-mode #toggle-btn {
+      background: #23263a;
+      color: #ffd700;
+      border: 1.5px solid #444;
     }
-    body.light-mode #toggle-btn:hover {
-      background: #fffbe6;
-      color: #a259e6;
+    body.dark-mode #toggle-btn:hover {
+      background: #a259e6;
+      color: #fff;
     }
     h1 {
       text-align: center;
-      color: #a259e6;
-      margin-bottom: 20px;
-      font-weight: 600;
+      color: #3a3a3a;
+      margin: 32px 0 12px 0;
+      font-weight: 500;
+      font-size: 2.1rem;
+      letter-spacing: 0.5px;
     }
     .sidebar {
       position: fixed;
-      top: 20px;
-      left: 20px;
+      top: 24px;
+      left: 24px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       z-index: 1000;
     }
     .sidebar button {
-      padding: 10px 20px;
-      font-family: 'Orbitron', sans-serif;
-      font-weight: bold;
-      background-color: #1e1e1e;
-      color: #a259e6;
-      border: 2px solid #a259e6;
+      padding: 8px 18px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: #fff;
+      color: #3a3a3a;
+      border: 1px solid #bbb;
       border-radius: 5px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background 0.2s, color 0.2s;
     }
     .sidebar button:hover {
-      background-color: #a259e6;
-      color: #0e0e0e;
+      background: #e9ecef;
+      color: #1976d2;
     }
     .weapon-section {
       margin-left: 180px;
+      max-width: 1100px;
+      margin-right: auto;
+      margin-top: 0;
     }
     .weapon-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 16px;
       justify-content: center;
-      margin-top: 20px;
+      margin-top: 16px;
     }
     .weapon {
       position: relative;
-      width: 200px;
-      height: 200px;
+      width: 170px;
+      height: 170px;
       overflow: hidden;
-      border-radius: 10px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      animation: fadeIn 0.8s ease;
-      background: #1a1a1a;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #ddd;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    .weapon:hover {
+      box-shadow: 0 2px 12px #1976d222;
     }
     .weapon img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 10px;
-      border: 2px solid #282828;
-      transition: box-shadow 0.3s ease;
-    }
-    .weapon:hover img {
-      box-shadow: 0 0 15px #a259e6;
+      border-radius: 8px;
+      border: none;
     }
     .stats {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 10px;
-      font-size: 14px;
+      background: rgba(240,240,240,0.97);
+      color: #222;
+      padding: 8px 4px;
+      font-size: 13px;
       display: none;
+      border-radius: 0 0 8px 8px;
+      text-align: center;
     }
     .weapon:hover .stats {
       display: block;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
     .comparison {
-      margin-top: 40px;
+      margin-top: 32px;
       display: flex;
-      gap: 40px;
+      gap: 24px;
       justify-content: center;
       flex-wrap: wrap;
     }
     .comparison-panel {
-      background: rgba(30, 30, 30, 0.85);
-      padding: 20px;
-      border-radius: 10px;
-      width: 300px;
-      min-height: 200px;
-      box-shadow: 0 0 10px rgba(80, 250, 123, 0.2);
+      background: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      width: 240px;
+      min-height: 120px;
+      box-shadow: 0 2px 8px #bbb3;
+      color: #222;
+      border: 1px solid #eee;
     }
     .comparison-panel h3 {
       margin-top: 0;
-      border-bottom: 1px solid #444;
-      padding-bottom: 10px;
-      color: #ffd700;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+      color: #1976d2;
+      font-size: 1.1rem;
+      font-weight: 500;
     }
     .section-title {
       text-align: center;
-      color: #ff3333;
-      font-size: 24px;
-      margin-top: 20px;
-      border-bottom: 1px solid #444;
-      padding-bottom: 5px;
+      color: #1976d2;
+      font-size: 1.3rem;
+      margin-top: 18px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4px;
+      font-weight: 500;
     }
     .hidden {
       display: none;
@@ -204,86 +211,75 @@
       margin: 0 auto;
       border-collapse: collapse;
       width: 90%;
-      margin-top: 20px;
+      margin-top: 18px;
+      background: #fff;
+      color: #222;
+      font-size: 15px;
     }
     table, th, td {
-      border: 1px solid #444;
+      border: 1px solid #eee;
     }
     th, td {
-      padding: 8px;
+      padding: 7px;
       text-align: center;
     }
     th {
-      background-color: #222;
-      color: #ffd700;
+      background-color: #f3f3f3;
+      color: #1976d2;
+      font-weight: 500;
     }
-    select#randomize-tier-select {
-      background: #222;
-      color: #e0e0e0;
-      border: 1px solid #444;
+    select#randomize-tier-select, select#drug-randomize-tier-select {
+      background: #fff;
+      color: #222;
+      border: 1px solid #bbb;
       border-radius: 5px;
-      font-size: 16px;
+      font-size: 15px;
       outline: none;
       transition: border 0.2s;
+      padding: 3px 8px;
     }
-    select#randomize-tier-select:focus {
-      border: 1.5px solid #a259e6;
-    }
-    .weapon.t1 {
-      border: 2.5px solid #3498db !important;
-      box-shadow: 0 0 15px #3498db55;
-    }
-    .weapon.t2 {
-      border: 2.5px solid #ffd700 !important;
-      box-shadow: 0 0 15px #ffd70088;
-    }
-    .spin-anim {
-      animation: subtleSpinAnim 0.7s cubic-bezier(.4,0,.2,1);
-    }
-    @keyframes subtleSpinAnim {
-      0% { opacity: 0; transform: scale(0.97); }
-      60% { opacity: 1; transform: scale(1.03); }
-      100% { opacity: 1; transform: scale(1); }
+    select#randomize-tier-select:focus, select#drug-randomize-tier-select:focus {
+      border: 1.5px solid #1976d2;
     }
     .info-tab {
       position: fixed;
       left: 20px;
       bottom: 20px;
       z-index: 1200;
-      background: linear-gradient(135deg, #181a20ee 70%, #23263a 100%);
-      color: #8be9fd;
+      background: #fff;
+      color: #1976d2;
       font-family: 'Orbitron', sans-serif;
       font-size: 15px;
       border-radius: 12px 12px 12px 0;
-      box-shadow: 0 4px 16px #0007;
+      box-shadow: 0 2px 8px #bbb7;
       padding: 8px 20px 8px 16px;
       min-width: 60px;
       cursor: pointer;
       transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      border: 2px solid #444;
-      opacity: 0.92;
+      border: 1.5px solid #bbb;
+      opacity: 0.96;
       display: block;
     }
     .info-tab:hover, .info-tab:focus {
-      background: linear-gradient(135deg, #23263a 80%, #181a20ee 100%);
-      color: #fff;
+      background: #f3f3f3;
+      color: #222;
       opacity: 1;
-      box-shadow: 0 6px 20px #000a;
+      box-shadow: 0 4px 16px #bbb9;
     }
     .info-popup {
       display: none;
       position: absolute;
       left: 0;
       bottom: 110%;
-      background: linear-gradient(135deg, #23263a 80%, #181a20ee 100%);
-      color: #fff;
-      font-size: 15px;
+      background: #fff;
+      color: #222;
+      font-size: 14px;
       border-radius: 10px;
-      box-shadow: 0 4px 14px #0008;
+      box-shadow: 0 2px 8px #bbb8;
       padding: 10px 18px 10px 18px;
       white-space: pre-line;
       min-width: 150px;
-      border: 1.5px solid #444;
+      border: 1.5px solid #bbb;
       opacity: 0.98;
       text-align: left;
     }
@@ -291,17 +287,17 @@
       display: block;
     }
     .info-popup-title {
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 600;
-      color: #50fa7b;
-      margin-bottom: 7px;
+      color: #1976d2;
+      margin-bottom: 6px;
       letter-spacing: 0.5px;
       text-shadow: none;
       display: block;
     }
     .info-credit-line {
-      margin-bottom: 4px;
-      font-size: 15px;
+      margin-bottom: 3px;
+      font-size: 14px;
       display: block;
     }
     /* Make comparison panels smaller and closer for randomizer tab only */
@@ -324,152 +320,216 @@
       line-height: 1.18 !important;
       margin-bottom: 6px !important;
     }
+    .main-center-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      width: 100vw;
+    }
+    body.dark-mode table {
+      background: #23263a;
+      color: #e0e0e0;
+    }
+    .page-flex {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100vw;
+      min-height: 100vh;
+    }
+    .sidebar {
+      flex-shrink: 0;
+      margin-top: 40px;
+      margin-left: 0;
+      margin-right: 32px;
+    }
+    .main-center-container {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-width: 0;
+      width: 100%;
+    }
+    .weapon-section {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      width: 100%;
+      max-width: 1100px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    body.dark-mode #randomize-tier-select {
+      background: #23263a;
+      color: #ffd700;
+      border: 1.5px solid #444;
+    }
+    body.dark-mode #randomize-tier-select:focus {
+      border: 1.5px solid #a259e6;
+    }
+    body.dark-mode .weapon.t2 {
+      border: 1.5px solid #ffe066 !important;
+      box-shadow: 0 0 4px 1px #ffe06622;
+    }
+    body.dark-mode .weapon.t1 {
+      border: 1.5px solid #4fc3f7 !important;
+      box-shadow: 0 0 4px 1px #4fc3f722;
+    }
   </style>
 </head>
-<body>
+<body class="dark-mode">
 
   <!-- Light/Dark Mode Toggle -->
   <div id="mode-toggle" style="position:fixed;top:18px;right:28px;z-index:9999;">
     <button id="toggle-btn" style="background:#23263a;color:#ffd700;border:1.5px solid #444;padding:3px 10px;border-radius:14px;font-family:'Orbitron',sans-serif;font-size:13px;cursor:pointer;transition:background 0.2s,color 0.2s;min-width:70px;">Light Mode</button>
   </div>
 
-  <div class="weapon-section">
-    <h1 style="text-align:center;">Towns Weapon Stats</h1>
-    <div style="text-align:center; color:#ffd700; font-size:16px; margin-bottom:18px; font-style:italic;">
-      Click on images for stats
-    </div>
-
+  <div class="page-flex">
     <div class="sidebar">
       <button onclick="showTier('tier1')">Show T1</button>
       <button onclick="showTier('tier2')">Show T2</button>
       <button onclick="showTier('drugs')">Drugs</button>
       <button onclick="showTier('randomize')">Randomize</button>
     </div>
+    <div class="main-center-container">
+      <div class="weapon-section">
+        <h1 style="text-align:center;">Towns Weapon Stats</h1>
+        <div style="text-align:center; color:#ffd700; font-size:16px; margin-bottom:18px; font-style:italic;">
+          Click on images for stats
+        </div>
 
-    <!-- Tier 1 Weapons -->
-    <div id="tier1" class="tier">
-      <div class="section-title">Tier 1 Weapons</div>
-      <div class="weapon-grid">
-        <div class="weapon" onclick="compareWeapon('Benelli', '18–28', '0.25', 'Tier 1 / Level 5')">
-          <img src="https://imgur.com/E0cmGx5.png" alt="Benelli">
-          <div class="stats"><strong>Benelli</strong><br>Damage: 18–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
+        <!-- Tier 1 Weapons -->
+        <div id="tier1" class="tier">
+          <div class="section-title">Tier 1 Weapons</div>
+          <div class="weapon-grid">
+            <div class="weapon" onclick="compareWeapon('Benelli', '18–28', '0.25', 'Tier 1 / Level 5')">
+              <img src="https://imgur.com/E0cmGx5.png" alt="Benelli">
+              <div class="stats"><strong>Benelli</strong><br>Damage: 18–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
+            </div>
+            <div class="weapon" onclick="compareWeapon('Glock 43X', '16–25', '0.42', 'Tier 1 / Level 5')">
+              <img src="https://imgur.com/CuCPI1O.png" alt="Glock 43X">
+              <div class="stats"><strong>Glock 43X</strong><br>Damage: 16–25<br>Reload Speed: 0.42<br>Tier: Tier 1 / Level 5</div>
+            </div>
+            <div class="weapon" onclick="compareWeapon('Glock 19X', '17–26', '0.55', 'Tier 1 / Level 5')">
+              <img src="https://imgur.com/6kXKKzm.png" alt="Glock 19X">
+              <div class="stats"><strong>Glock 19X</strong><br>Damage: 17–26<br>Reload Speed: 0.55<br>Tier: Tier 1 / Level 5</div>
+            </div>
+            <div class="weapon" onclick="compareWeapon('Ghost Glock', '22–30', '0.7', 'Tier 1 / Level 5')">
+              <img src="https://imgur.com/PWifbp1.png" alt="Ghost Glock">
+              <div class="stats"><strong>Ghost Glock</strong><br>Damage: 22–30<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
+            </div>
+            <div class="weapon" onclick="compareWeapon('Glock 17', '18–27', '0.60', 'Tier 1 / Level 5')">
+              <img src="https://imgur.com/hZcx4xL.png" alt="Glock 17">
+              <div class="stats"><strong>Glock 17</strong><br>Damage: 18–27<br>Reload Speed: 0.60<br>Tier: Tier 1 / Level 5</div>
+            </div>
+            <div class="weapon" onclick="compareWeapon('S&W 657', '15–24', '0.7', 'Tier 1 / Level 5')">
+              <img src="https://imgur.com/i6yHy7h.png" alt="S&W 657">
+              <div class="stats"><strong>S&W 657</strong><br>Damage: 15–24<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
+            </div>
+            <div class="weapon" onclick="compareWeapon('Walther PPK', '19–28', '0.25', 'Tier 1 / Level 5')">
+              <img src="https://imgur.com/nCnVbqW.png" alt="Walther PPK">
+              <div class="stats"><strong>Walther PPK</strong><br>Damage: 19–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
+            </div>
+          </div>
         </div>
-        <div class="weapon" onclick="compareWeapon('Glock 43X', '16–25', '0.42', 'Tier 1 / Level 5')">
-          <img src="https://imgur.com/CuCPI1O.png" alt="Glock 43X">
-          <div class="stats"><strong>Glock 43X</strong><br>Damage: 16–25<br>Reload Speed: 0.42<br>Tier: Tier 1 / Level 5</div>
-        </div>
-        <div class="weapon" onclick="compareWeapon('Glock 19X', '17–26', '0.55', 'Tier 1 / Level 5')">
-          <img src="https://imgur.com/6kXKKzm.png" alt="Glock 19X">
-          <div class="stats"><strong>Glock 19X</strong><br>Damage: 17–26<br>Reload Speed: 0.55<br>Tier: Tier 1 / Level 5</div>
-        </div>
-        <div class="weapon" onclick="compareWeapon('Ghost Glock', '22–30', '0.7', 'Tier 1 / Level 5')">
-          <img src="https://imgur.com/PWifbp1.png" alt="Ghost Glock">
-          <div class="stats"><strong>Ghost Glock</strong><br>Damage: 22–30<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
-        </div>
-        <div class="weapon" onclick="compareWeapon('Glock 17', '18–27', '0.60', 'Tier 1 / Level 5')">
-          <img src="https://imgur.com/hZcx4xL.png" alt="Glock 17">
-          <div class="stats"><strong>Glock 17</strong><br>Damage: 18–27<br>Reload Speed: 0.60<br>Tier: Tier 1 / Level 5</div>
-        </div>
-        <div class="weapon" onclick="compareWeapon('S&W 657', '15–24', '0.7', 'Tier 1 / Level 5')">
-          <img src="https://imgur.com/i6yHy7h.png" alt="S&W 657">
-          <div class="stats"><strong>S&W 657</strong><br>Damage: 15–24<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
-        </div>
-        <div class="weapon" onclick="compareWeapon('Walther PPK', '19–28', '0.25', 'Tier 1 / Level 5')">
-          <img src="https://imgur.com/nCnVbqW.png" alt="Walther PPK">
-          <div class="stats"><strong>Walther PPK</strong><br>Damage: 19–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Tier 2 Weapons -->
-    <div id="tier2" class="tier hidden">
-      <div class="section-title">Tier 2 Weapons</div>
-      <div class="weapon-grid">
-        <div class="weapon" onclick="compareWeapon('Remington Model 870', '35–70', '0.45', 'Tier 2 / Level 10')">
-          <img src="https://imgur.com/dxeebwi.png" alt="Remington Model 870">
-          <div class="stats"><strong>Remington Model 870</strong><br>Damage: 35–70<br>Reload Speed: 0.45<br>Tier: Tier 2 / Level 10</div>
+        <!-- Tier 2 Weapons -->
+        <div id="tier2" class="tier hidden">
+          <div class="section-title">Tier 2 Weapons</div>
+          <div class="weapon-grid">
+            <div class="weapon" onclick="compareWeapon('Remington Model 870', '35–70', '0.45', 'Tier 2 / Level 10')">
+              <img src="https://imgur.com/dxeebwi.png" alt="Remington Model 870">
+              <div class="stats"><strong>Remington Model 870</strong><br>Damage: 35–70<br>Reload Speed: 0.45<br>Tier: Tier 2 / Level 10</div>
+            </div>
+            <div class="weapon" onclick="compareWeapon('MAC-10', '18–26', '0.7', 'Tier 2 / Level 9')">
+              <img src="https://imgur.com/hZLckNY.png" alt="MAC-10">
+              <div class="stats"><strong>MAC-10</strong><br>Damage: 18–26<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 9</div>
+            </div>
+            <div class="weapon" onclick="compareWeapon('1911', '25–35', '0.5', 'Tier 2 / Level 8')">
+              <img src="https://imgur.com/SvsMI1u.png" alt="1911">
+              <div class="stats"><strong>1911</strong><br>Damage: 25–35<br>Reload Speed: 0.5<br>Tier: Tier 2 / Level 8</div>
+            </div>
+            <div class="weapon" onclick="compareWeapon('Lebedev PL14', '22–32', '0.8', 'Tier 2 / Level 7')">
+              <img src="https://imgur.com/nBD8R9U.png" alt="Lebedev PL14">
+              <div class="stats"><strong>Lebedev PL14</strong><br>Damage: 22–32<br>Reload Speed: 0.8<br>Tier: Tier 2 / Level 7</div>
+            </div>
+            <div class="weapon" onclick="compareWeapon('TEC-9', '20–28', '0.7', 'Tier 2 / Level 10')">
+              <img src="https://imgur.com/IPaF7az.png" alt="TEC-9">
+              <div class="stats"><strong>TEC-9</strong><br>Damage: 20–28<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 10</div>
+            </div>
+          </div>
         </div>
-        <div class="weapon" onclick="compareWeapon('MAC-10', '18–26', '0.7', 'Tier 2 / Level 9')">
-          <img src="https://imgur.com/hZLckNY.png" alt="MAC-10">
-          <div class="stats"><strong>MAC-10</strong><br>Damage: 18–26<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 9</div>
-        </div>
-        <div class="weapon" onclick="compareWeapon('1911', '25–35', '0.5', 'Tier 2 / Level 8')">
-          <img src="https://imgur.com/SvsMI1u.png" alt="1911">
-          <div class="stats"><strong>1911</strong><br>Damage: 25–35<br>Reload Speed: 0.5<br>Tier: Tier 2 / Level 8</div>
-        </div>
-        <div class="weapon" onclick="compareWeapon('Lebedev PL14', '22–32', '0.8', 'Tier 2 / Level 7')">
-          <img src="https://imgur.com/nBD8R9U.png" alt="Lebedev PL14">
-          <div class="stats"><strong>Lebedev PL14</strong><br>Damage: 22–32<br>Reload Speed: 0.8<br>Tier: Tier 2 / Level 7</div>
-        </div>
-        <div class="weapon" onclick="compareWeapon('TEC-9', '20–28', '0.7', 'Tier 2 / Level 10')">
-          <img src="https://imgur.com/IPaF7az.png" alt="TEC-9">
-          <div class="stats"><strong>TEC-9</strong><br>Damage: 20–28<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 10</div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Drug Stats -->
-    <div id="drugs" class="tier hidden">
-      <div class="section-title">Drugs</div>
-      <table>
-        <thead>
-          <tr>
-            <th>Drug Name</th><th>Effect</th><th>Duration (Seconds)</th><th>Description</th><th>Tier / Level</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Marijuana</td><td>1–5 HP Regen</td><td>5</td><td>Plant with psychoactive properties, alters mental state</td><td>Tier 1 / Level 5</td></tr>
-          <tr><td>Oxycodone</td><td>5–10 HP Regen</td><td>7</td><td>Used to relieve pain, wide effects on users</td><td>Tier 1 / Level 5</td></tr>
-          <tr><td>Codeine</td><td>1–5 Armor Points</td><td>---</td><td>Used for mild pain, can cause dependence</td><td>Tier 1 / Level 5</td></tr>
-          <tr><td>Cocaine</td><td>Speed / Stamina Boost</td><td>180</td><td>Bitter, habit-forming stimulant from coca leaves</td><td>Tier 2 / Level 5</td></tr>
-          <tr><td>Methamphetamine</td><td>Strength Boost</td><td>600</td><td>Lab-made stimulant, causes euphoria & alertness</td><td>Tier 2 / Level 5</td></tr>
-          <tr><td>Ecstasy / MDMA</td><td>20–40 HP Regen</td><td>15</td><td>Hallucinogen that distorts perception & enjoyment</td><td>Tier 2 / Level 5</td></tr>
-          <tr><td>Fentanyl</td><td>5–10 Armor Points</td><td>---</td><td>Potent opioid, high overdose potential</td><td>Tier 2 / Level 5</td></tr>
-        </tbody>
-      </table>
-    </div>
+        <!-- Drug Stats -->
+        <div id="drugs" class="tier hidden">
+          <div class="section-title">Drugs</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Drug Name</th><th>Effect</th><th>Duration (Seconds)</th><th>Description</th><th>Tier / Level</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Marijuana</td><td>1–5 HP Regen</td><td>5</td><td>Plant with psychoactive properties, alters mental state</td><td>Tier 1 / Level 5</td></tr>
+              <tr><td>Oxycodone</td><td>5–10 HP Regen</td><td>7</td><td>Used to relieve pain, wide effects on users</td><td>Tier 1 / Level 5</td></tr>
+              <tr><td>Codeine</td><td>1–5 Armor Points</td><td>---</td><td>Used for mild pain, can cause dependence</td><td>Tier 1 / Level 5</td></tr>
+              <tr><td>Cocaine</td><td>Speed / Stamina Boost</td><td>180</td><td>Bitter, habit-forming stimulant from coca leaves</td><td>Tier 2 / Level 5</td></tr>
+              <tr><td>Methamphetamine</td><td>Strength Boost</td><td>600</td><td>Lab-made stimulant, causes euphoria & alertness</td><td>Tier 2 / Level 5</td></tr>
+              <tr><td>Ecstasy / MDMA</td><td>20–40 HP Regen</td><td>15</td><td>Hallucinogen that distorts perception & enjoyment</td><td>Tier 2 / Level 5</td></tr>
+              <tr><td>Fentanyl</td><td>5–10 Armor Points</td><td>---</td><td>Potent opioid, high overdose potential</td><td>Tier 2 / Level 5</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-    <!-- Randomize Tab -->
-    <div id="randomize" class="tier hidden">
-      <div class="section-title">Randomize</div>
-      <div style="text-align:center; margin-bottom: 10px; color: #8be9fd;">Simulate a faction drop spin</div>
-      <div style="text-align:center; margin-bottom: 20px;">
-        <label for="randomize-tier-select" style="margin-right: 10px;">Choose Tier:</label>
-        <select id="randomize-tier-select" style="padding: 5px 10px; font-family: 'Orbitron', sans-serif;">
-          <option value="test">Test Drops</option>
-          <option value="tier1">Tier 1</option>
-          <option value="tier2">Tier 2</option>
-        </select>
-        <button onclick="spinWeapons()" style="margin-left: 20px; padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #a259e6; border: 2px solid #a259e6; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin</button>
-      </div>
-      <div id="spin-result" style="display: flex; justify-content: center; gap: 40px; margin-top: 30px;"></div>
+        <!-- Randomize Tab -->
+        <div id="randomize" class="tier hidden">
+          <div class="section-title">Randomize</div>
+          <div style="text-align:center; margin-bottom: 10px; color: #8be9fd;">Simulate a faction drop spin</div>
+          <div style="text-align:center; margin-bottom: 20px;">
+            <label for="randomize-tier-select" style="margin-right: 10px;">Choose Tier:</label>
+            <select id="randomize-tier-select" style="padding: 5px 10px; font-family: 'Orbitron', sans-serif;">
+              <option value="test">Test Drops</option>
+              <option value="tier1">Tier 1</option>
+              <option value="tier2">Tier 2</option>
+            </select>
+            <button onclick="spinWeapons()" style="margin-left: 20px; padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #a259e6; border: 2px solid #a259e6; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin</button>
+          </div>
+          <div id="spin-result" style="display: flex; justify-content: center; gap: 40px; margin-top: 30px;"></div>
 
-      <!-- Drug Randomizer -->
-      <div class="section-title" style="margin-top:40px; color:#ffb86c;">Drug Randomizer</div>
-      <div style="text-align:center; margin-bottom: 20px; color: #8be9fd;">Randomly generate a large batch of drugs (75-100 total for T1, 100-180 for T2)</div>
-      <div style="text-align:center; margin-bottom: 20px;">
-        <label for="drug-randomize-tier-select" style="margin-right: 10px;">Choose Drug Tier:</label>
-        <select id="drug-randomize-tier-select" style="padding: 5px 10px; font-family: 'Orbitron', sans-serif; background: #222; color: #e0e0e0; border: 1px solid #ffb86c; border-radius: 5px; font-size: 16px; outline: none; transition: border 0.2s;">
-          <option value="t1">T1</option>
-          <option value="t2">T2</option>
-        </select>
-      </div>
-      <div style="text-align:center; margin-bottom: 20px;">
-        <button onclick="spinDrugs()" style="padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #ffb86c; border: 2px solid #ffb86c; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin Drugs</button>
-      </div>
-      <div id="drug-spin-result" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; margin-top: 6px; margin-bottom: 6px;"></div>
-    </div>
+          <!-- Drug Randomizer -->
+          <div class="section-title" style="margin-top:40px; color:#ffb86c;">Drug Randomizer</div>
+          <div style="text-align:center; margin-bottom: 20px; color: #8be9fd;">Randomly generate a large batch of drugs (75-100 total for T1, 100-180 for T2)</div>
+          <div style="text-align:center; margin-bottom: 20px;">
+            <label for="drug-randomize-tier-select" style="margin-right: 10px;">Choose Drug Tier:</label>
+            <select id="drug-randomize-tier-select" style="padding: 5px 10px; font-family: 'Orbitron', sans-serif; background: #222; color: #e0e0e0; border: 1px solid #ffb86c; border-radius: 5px; font-size: 16px; outline: none; transition: border 0.2s;">
+              <option value="t1">T1</option>
+              <option value="t2">T2</option>
+            </select>
+          </div>
+          <div style="text-align:center; margin-bottom: 20px;">
+            <button onclick="spinDrugs()" style="padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #ffb86c; border: 2px solid #ffb86c; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin Drugs</button>
+          </div>
+          <div id="drug-spin-result" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; margin-top: 6px; margin-bottom: 6px;"></div>
+        </div>
 
-    <!-- Comparison Panels (moved inside weapon-section for alignment) -->
-    <div id="compare-heading" style="text-align:center; color:#ffd700; font-size:22px; font-weight:600; margin-top:40px; margin-bottom:18px; font-family:'Orbitron',sans-serif;">Compare 2 Weapons</div>
-    <div class="comparison">
-      <div class="comparison-panel" id="compare1">
-        <h3>Weapon 1</h3>
-        <p>Select a weapon...</p>
-      </div>
-      <div class="comparison-panel" id="compare2">
-        <h3>Weapon 2</h3>
-        <p>Select a weapon...</p>
+        <!-- Comparison Panels (moved inside weapon-section for alignment) -->
+        <div id="compare-heading" style="text-align:center; color:#ffd700; font-size:22px; font-weight:600; margin-top:40px; margin-bottom:18px; font-family:'Orbitron',sans-serif;">Compare 2 Weapons</div>
+        <div class="comparison">
+          <div class="comparison-panel" id="compare1">
+            <h3>Weapon 1</h3>
+            <p>Select a weapon...</p>
+          </div>
+          <div class="comparison-panel" id="compare2">
+            <h3>Weapon 2</h3>
+            <p>Select a weapon...</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -698,56 +758,23 @@
     }
 
     // Drug data for drug randomizer
-    const drugs = [
-      {
-        name: 'Marijuana',
-        effect: '1–5 HP Regen',
-        duration: '5',
-        description: 'Plant with psychoactive properties, alters mental state',
-        tier: 'Tier 1 / Level 5'
-      },
-      {
-        name: 'Oxycodone',
-        effect: '5–10 HP Regen',
-        duration: '7',
-        description: 'Used to relieve pain, wide effects on users',
-        tier: 'Tier 1 / Level 5'
-      },
-      {
-        name: 'Codeine',
-        effect: '1–5 Armor Points',
-        duration: '---',
-        description: 'Used for mild pain, can cause dependence',
-        tier: 'Tier 1 / Level 5'
-      },
-      {
-        name: 'Cocaine',
-        effect: 'Speed / Stamina Boost',
-        duration: '180',
-        description: 'Bitter, habit-forming stimulant from coca leaves',
-        tier: 'Tier 2 / Level 5'
-      },
-      {
-        name: 'Methamphetamine',
-        effect: 'Strength Boost',
-        duration: '600',
-        description: 'Lab-made stimulant, causes euphoria & alertness',
-        tier: 'Tier 2 / Level 5'
-      },
-      {
-        name: 'Ecstasy / MDMA',
-        effect: '20–40 HP Regen',
-        duration: '15',
-        description: 'Hallucinogen that distorts perception & enjoyment',
-        tier: 'Tier 2 / Level 5'
-      },
-      {
-        name: 'Fentanyl',
-        effect: '5–10 Armor Points',
-        duration: '---',
-        description: 'Potent opioid, high overdose potential',
-        tier: 'Tier 2 / Level 5'
-      }
+    const t1Drugs = [
+      { name: 'Marijuana' },
+      { name: 'Oxycodone' },
+      { name: 'Codeine' },
+      { name: 'Xanax' },
+      { name: 'Adderall' }
+    ];
+    const t2Drugs = [
+      { name: 'Marijuana' },
+      { name: 'Oxycodone' },
+      { name: 'Codeine' },
+      { name: 'Xanax' },
+      { name: 'Adderall' },
+      { name: 'Cocaine' },
+      { name: 'Methamphetamine' },
+      { name: 'Ecstasy / MDMA' },
+      { name: 'Fentanyl' }
     ];
 
     function spinDrugs() {
@@ -760,9 +787,16 @@
         count = Math.floor(Math.random() * 26) + 75; // 75-100
       }
       let results = [];
-      for (let i = 0; i < count; i++) {
-        const idx = Math.floor(Math.random() * drugs.length);
-        results.push(drugs[idx].name);
+      if (tier === 't2') {
+        for (let i = 0; i < count; i++) {
+          const idx = Math.floor(Math.random() * t2Drugs.length);
+          results.push(t2Drugs[idx].name);
+        }
+      } else {
+        for (let i = 0; i < count; i++) {
+          const idx = Math.floor(Math.random() * t1Drugs.length);
+          results.push(t1Drugs[idx].name);
+        }
       }
       // Count occurrences
       const summary = {};
@@ -792,11 +826,18 @@
     // Light/Dark Mode Toggle
     document.addEventListener('DOMContentLoaded', function() {
       const btn = document.getElementById('toggle-btn');
+      // Default to dark mode
+      document.body.classList.add('dark-mode');
+      document.body.classList.remove('light-mode');
+      btn.innerHTML = 'Light Mode';
       btn.addEventListener('click', function() {
-        document.body.classList.toggle('light-mode');
-        if(document.body.classList.contains('light-mode')) {
+        if(document.body.classList.contains('dark-mode')) {
+          document.body.classList.remove('dark-mode');
+          document.body.classList.add('light-mode');
           btn.innerHTML = 'Dark Mode';
         } else {
+          document.body.classList.remove('light-mode');
+          document.body.classList.add('dark-mode');
           btn.innerHTML = 'Light Mode';
         }
       });
