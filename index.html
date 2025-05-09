@@ -155,6 +155,22 @@
     select#randomize-tier-select:focus {
       border: 1.5px solid #50fa7b;
     }
+    .weapon.t1 {
+      border: 2.5px solid #3498db !important;
+      box-shadow: 0 0 15px #3498db55;
+    }
+    .weapon.t2 {
+      border: 2.5px solid #a259e6 !important;
+      box-shadow: 0 0 15px #a259e655;
+    }
+    .spin-anim {
+      animation: subtleSpinAnim 0.7s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes subtleSpinAnim {
+      0% { opacity: 0; transform: scale(0.97); }
+      60% { opacity: 1; transform: scale(1.03); }
+      100% { opacity: 1; transform: scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -289,6 +305,8 @@
   </div>
 </div>
 
+<audio id="spin-sound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae3b2.mp3" preload="auto"></audio>
+
 <script>
   function showTier(tierId) {
     document.querySelectorAll('.tier').forEach(t => t.classList.add('hidden'));
@@ -402,6 +420,14 @@
     }
   ];
   function spinWeapons() {
+    // Play sound
+    document.getElementById('spin-sound').currentTime = 0;
+    document.getElementById('spin-sound').play();
+    // Spin animation effect
+    const spinResult = document.getElementById('spin-result');
+    spinResult.classList.remove('spin-anim');
+    void spinResult.offsetWidth; // force reflow
+    spinResult.classList.add('spin-anim');
     const tier = document.getElementById('randomize-tier-select').value;
     let results = [];
     if (tier === 'test') {
@@ -438,8 +464,8 @@
       results = t2idxs.map(i => t2Weapons[i]).concat(t1idxs.map(i => t1Weapons[i]));
     }
     document.getElementById('spin-result').innerHTML = results.map(w => `
-      <div class=\"weapon\" style=\"width:180px;height:180px;flex-direction:column;\" onclick=\"compareWeapon('${w.name.replace(/'/g, "\\'")}', '${w.damage}', '${w.reload}', '${w.tier.replace(/'/g, "\\'")}' )\">
-        <img src=\"${w.img}\" alt=\"${w.name}\" style=\"width:100%;height:100%;object-fit:cover;border-radius:10px;border:2px solid #282828;\">
+      <div class=\"weapon ${w.tier.startsWith('Tier 1') ? 't1' : 't2'}\" style=\"width:180px;height:180px;flex-direction:column;\" onclick=\"compareWeapon('${w.name.replace(/'/g, "\\'")}', '${w.damage}', '${w.reload}', '${w.tier.replace(/'/g, "\\'")}' )\">
+        <img src=\"${w.img}\" alt=\"${w.name}\" style=\"width:100%;height:100%;object-fit:cover;border-radius:10px;\">
         <div class=\"stats\" style=\"display:block;position:static;background:none;padding:5px 0 0 0;font-size:15px;color:#8be9fd;\">
           <strong>${w.name}</strong><br>Damage: ${w.damage}<br>Reload: ${w.reload}<br>Tier: ${w.tier}
         </div>
@@ -520,6 +546,18 @@
       sorted.map(([name, count]) => `<li style=\"margin-bottom:6px;\">- <span style=\"color:#ffb86c;\">${name}</span>: <span style=\"color:#8be9fd;\">${count}</span></li>`).join('') +
       '</ul>';
   }
+
+  // Add t1/t2 classes to grid weapons
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.weapon-grid .weapon').forEach(el => {
+      const stats = el.querySelector('.stats');
+      if (stats && stats.innerHTML.includes('Tier 1')) {
+        el.classList.add('t1');
+      } else if (stats && stats.innerHTML.includes('Tier 2')) {
+        el.classList.add('t2');
+      }
+    });
+  });
 </script>
 
 </body>
