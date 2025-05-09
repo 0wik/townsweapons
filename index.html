@@ -498,20 +498,26 @@
       }
       results = idxs.map(i => t1Weapons[i]);
     } else if (tier === 'tier2') {
-      // Tier 2: 2 random T2 weapons, 2 random T1 weapons
-      if (t2Weapons.length < 2 || t1Weapons.length < 2) return;
-      let t2idxs = [];
-      while (t2idxs.length < 2) {
-        let idx = Math.floor(Math.random() * t2Weapons.length);
-        if (!t2idxs.includes(idx)) t2idxs.push(idx);
-      }
-      let t1idxs = [];
-      while (t1idxs.length < 2) {
-        let idx = Math.floor(Math.random() * t1Weapons.length);
-        if (!t1idxs.includes(idx)) t1idxs.push(idx);
-      }
-      results = t2idxs.map(i => t2Weapons[i]).concat(t1idxs.map(i => t1Weapons[i]));
-    }
+  // Always 6 weapons total, 1–3 of them are Tier 2
+  const t2Count = Math.floor(Math.random() * 3) + 1; // 1 to 3
+  const t1Count = 6 - t2Count;
+
+  if (t2Weapons.length < t2Count || t1Weapons.length < t1Count) return;
+
+  let t2idxs = [];
+  while (t2idxs.length < t2Count) {
+    let idx = Math.floor(Math.random() * t2Weapons.length);
+    if (!t2idxs.includes(idx)) t2idxs.push(idx);
+  }
+
+  let t1idxs = [];
+  while (t1idxs.length < t1Count) {
+    let idx = Math.floor(Math.random() * t1Weapons.length);
+    if (!t1idxs.includes(idx)) t1idxs.push(idx);
+  }
+
+  results = t2idxs.map(i => t2Weapons[i]).concat(t1idxs.map(i => t1Weapons[i]));
+}
     document.getElementById('spin-result').innerHTML = results.map(w => `
       <div class=\"weapon ${w.tier.startsWith('Tier 1') ? 't1' : 't2'}\" style=\"width:180px;height:180px;flex-direction:column;\" onclick=\"compareWeapon('${w.name.replace(/'/g, "\\'")}', '${w.damage}', '${w.reload}', '${w.tier.replace(/'/g, "\\'")}' )\">
         <img src=\"${w.img}\" alt=\"${w.name}\" style=\"width:100%;height:100%;object-fit:cover;border-radius:10px;\">
