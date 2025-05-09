@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +25,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      z-index: 1000;
     }
     .sidebar button {
       padding: 10px 20px;
@@ -43,7 +43,7 @@
       color: #0e0e0e;
     }
     .weapon-section {
-      margin-left: 150px;
+      margin-left: 180px;
     }
     .weapon-grid {
       display: flex;
@@ -156,6 +156,7 @@
 </div>
 
 <div class="weapon-section">
+  <!-- Tier 1 Weapons -->
   <div id="tier1" class="tier">
     <div class="section-title">Tier 1 Weapons</div>
     <div class="weapon-grid">
@@ -181,7 +182,7 @@
       </div>
       <div class="weapon" onclick="compareWeapon('S&W 657', '15–24', '0.7', 'Tier 1 / Level 5')">
         <img src="https://imgur.com/i6yHy7h.png" alt="S&W 657">
-        <div class="stats"><strong>S&amp;W 657</strong><br>Damage: 15–24<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
+        <div class="stats"><strong>S&W 657</strong><br>Damage: 15–24<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
       </div>
       <div class="weapon" onclick="compareWeapon('Walther PPK', '19–28', '0.25', 'Tier 1 / Level 5')">
         <img src="https://imgur.com/nCnVbqW.png" alt="Walther PPK">
@@ -190,32 +191,41 @@
     </div>
   </div>
 
+  <!-- Tier 2 Weapons -->
   <div id="tier2" class="tier hidden">
     <div class="section-title">Tier 2 Weapons</div>
     <div class="weapon-grid">
       <div class="weapon" onclick="compareWeapon('Remington Model 870', '35–70', '0.45', 'Tier 2 / Level 10')">
+        <img src="https://imgur.com/dxeebwi.png" alt="Remington Model 870">
         <div class="stats"><strong>Remington Model 870</strong><br>Damage: 35–70<br>Reload Speed: 0.45<br>Tier: Tier 2 / Level 10</div>
       </div>
       <div class="weapon" onclick="compareWeapon('MAC-10', '18–26', '0.7', 'Tier 2 / Level 9')">
+        <img src="https://imgur.com/hZLckNY.png" alt="MAC-10">
         <div class="stats"><strong>MAC-10</strong><br>Damage: 18–26<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 9</div>
       </div>
       <div class="weapon" onclick="compareWeapon('1911', '25–35', '0.5', 'Tier 2 / Level 8')">
+        <img src="https://imgur.com/SvsMI1u.png" alt="1911">
         <div class="stats"><strong>1911</strong><br>Damage: 25–35<br>Reload Speed: 0.5<br>Tier: Tier 2 / Level 8</div>
       </div>
       <div class="weapon" onclick="compareWeapon('Lebedev PL14', '22–32', '0.8', 'Tier 2 / Level 7')">
+        <img src="https://imgur.com/nBD8R9U.png" alt="Lebedev PL14">
         <div class="stats"><strong>Lebedev PL14</strong><br>Damage: 22–32<br>Reload Speed: 0.8<br>Tier: Tier 2 / Level 7</div>
       </div>
       <div class="weapon" onclick="compareWeapon('TEC-9', '20–28', '0.7', 'Tier 2 / Level 10')">
+        <img src="https://imgur.com/IPaF7az.png" alt="TEC-9">
         <div class="stats"><strong>TEC-9</strong><br>Damage: 20–28<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 10</div>
       </div>
     </div>
   </div>
 
+  <!-- Drug Stats -->
   <div id="drugs" class="tier hidden">
     <div class="section-title">Drugs</div>
     <table>
       <thead>
-        <tr><th>Drug Name</th><th>Effect</th><th>Duration (Seconds)</th><th>Description</th><th>Tier / Level</th></tr>
+        <tr>
+          <th>Drug Name</th><th>Effect</th><th>Duration (Seconds)</th><th>Description</th><th>Tier / Level</th>
+        </tr>
       </thead>
       <tbody>
         <tr><td>Marijuana</td><td>1–5 HP Regen</td><td>5</td><td>Plant with psychoactive properties, alters mental state</td><td>Tier 1 / Level 5</td></tr>
@@ -230,6 +240,7 @@
   </div>
 </div>
 
+<!-- Comparison Panels -->
 <div class="comparison">
   <div class="comparison-panel" id="compare1">
     <h3>Weapon 1</h3>
