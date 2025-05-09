@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FiveM Weapon & Drug Stats</title>
+  <title>Towns Weapon Stats</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -14,7 +14,7 @@
     }
     h1 {
       text-align: center;
-      color: #50fa7b;
+      color: #a259e6;
       margin-bottom: 20px;
       font-weight: 600;
     }
@@ -32,14 +32,14 @@
       font-family: 'Orbitron', sans-serif;
       font-weight: bold;
       background-color: #1e1e1e;
-      color: #50fa7b;
-      border: 2px solid #50fa7b;
+      color: #a259e6;
+      border: 2px solid #a259e6;
       border-radius: 5px;
       cursor: pointer;
       transition: 0.3s;
     }
     .sidebar button:hover {
-      background-color: #50fa7b;
+      background-color: #a259e6;
       color: #0e0e0e;
     }
     .weapon-section {
@@ -75,7 +75,7 @@
       transition: box-shadow 0.3s ease;
     }
     .weapon:hover img {
-      box-shadow: 0 0 15px #50fa7b;
+      box-shadow: 0 0 15px #a259e6;
     }
     .stats {
       position: absolute;
@@ -113,11 +113,11 @@
       margin-top: 0;
       border-bottom: 1px solid #444;
       padding-bottom: 10px;
-      color: #50fa7b;
+      color: #ffd700;
     }
     .section-title {
       text-align: center;
-      color: #ff79c6;
+      color: #ff3333;
       font-size: 24px;
       margin-top: 20px;
       border-bottom: 1px solid #444;
@@ -141,7 +141,7 @@
     }
     th {
       background-color: #222;
-      color: #50fa7b;
+      color: #ffd700;
     }
     select#randomize-tier-select {
       background: #222;
@@ -153,15 +153,15 @@
       transition: border 0.2s;
     }
     select#randomize-tier-select:focus {
-      border: 1.5px solid #50fa7b;
+      border: 1.5px solid #a259e6;
     }
     .weapon.t1 {
       border: 2.5px solid #3498db !important;
       box-shadow: 0 0 15px #3498db55;
     }
     .weapon.t2 {
-      border: 2.5px solid #a259e6 !important;
-      box-shadow: 0 0 15px #a259e655;
+      border: 2.5px solid #ffd700 !important;
+      box-shadow: 0 0 15px #ffd70088;
     }
     .spin-anim {
       animation: subtleSpinAnim 0.7s cubic-bezier(.4,0,.2,1);
@@ -216,7 +216,7 @@
 </head>
 <body>
 
-<h1>FiveM Weapon Stats</h1>
+<h1>Towns Weapon Stats</h1>
 
 <div class="sidebar">
   <button onclick="showTier('tier1')">Show T1</button>
@@ -320,7 +320,7 @@
         <option value="tier1">Tier 1</option>
         <option value="tier2">Tier 2</option>
       </select>
-      <button onclick="spinWeapons()" style="margin-left: 20px; padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #50fa7b; border: 2px solid #50fa7b; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin</button>
+      <button onclick="spinWeapons()" style="margin-left: 20px; padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #a259e6; border: 2px solid #a259e6; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin</button>
     </div>
     <div id="spin-result" style="display: flex; justify-content: center; gap: 40px; margin-top: 30px;"></div>
 
@@ -350,7 +350,7 @@
 <div class="info-tab" tabindex="0">
   Info
   <div class="info-popup">
-    Made by 0wik
+    Made by 0wik<br>Images made by Iconic
   </div>
 </div>
 
@@ -515,7 +515,7 @@
     document.getElementById('spin-result').innerHTML = results.map(w => `
       <div class=\"weapon ${w.tier.startsWith('Tier 1') ? 't1' : 't2'}\" style=\"width:180px;height:180px;flex-direction:column;\" onclick=\"compareWeapon('${w.name.replace(/'/g, "\\'")}', '${w.damage}', '${w.reload}', '${w.tier.replace(/'/g, "\\'")}' )\">
         <img src=\"${w.img}\" alt=\"${w.name}\" style=\"width:100%;height:100%;object-fit:cover;border-radius:10px;\">
-        <div class=\"stats\" style=\"display:block;position:static;background:none;padding:5px 0 0 0;font-size:15px;color:#8be9fd;\">
+        <div class=\"stats\" style=\"display:block;position:static;background:none;padding:5px 0 0 0;font-size:15px;color:${w.tier.startsWith('Tier 1') ? '#8be9fd' : '#ffd700'};\">
           <strong>${w.name}</strong><br>Damage: ${w.damage}<br>Reload: ${w.reload}<br>Tier: ${w.tier}
         </div>
       </div>
