@@ -176,56 +176,97 @@
       left: 20px;
       bottom: 20px;
       z-index: 1200;
-      background: #181a20ee;
+      background: linear-gradient(135deg, #181a20ee 70%, #23263a 100%);
       color: #8be9fd;
       font-family: 'Orbitron', sans-serif;
-      font-size: 16px;
-      border-radius: 8px 8px 8px 0;
-      box-shadow: 0 2px 8px #0004;
-      padding: 8px 18px 8px 16px;
+      font-size: 18px;
+      border-radius: 12px 12px 12px 0;
+      box-shadow: 0 4px 16px #0007;
+      padding: 10px 24px 10px 18px;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      border: 1.5px solid #444;
-      opacity: 0.85;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      border: 2px solid #444;
+      opacity: 0.92;
+      display: flex;
+      align-items: center;
     }
     .info-tab:hover, .info-tab:focus {
-      background: #23263a;
+      background: linear-gradient(135deg, #23263a 80%, #181a20ee 100%);
       color: #fff;
       opacity: 1;
+      box-shadow: 0 6px 20px #000a;
     }
     .info-popup {
       display: none;
       position: absolute;
       left: 0;
       bottom: 110%;
-      background: #23263a;
+      background: linear-gradient(135deg, #23263a 80%, #181a20ee 100%);
       color: #fff;
       font-size: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px #0006;
-      padding: 12px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px #0008;
+      padding: 10px 18px 10px 18px;
       white-space: pre-line;
-      min-width: 180px;
+      min-width: 150px;
       border: 1.5px solid #444;
-      opacity: 0.97;
+      opacity: 0.98;
+      text-align: left;
     }
     .info-tab:hover .info-popup, .info-tab:focus .info-popup {
       display: block;
+    }
+    .info-popup-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: #50fa7b;
+      margin-bottom: 7px;
+      letter-spacing: 0.5px;
+      text-shadow: none;
+      display: block;
+    }
+    .info-credit-line {
+      margin-bottom: 4px;
+      font-size: 15px;
+      display: block;
+    }
+    /* Make comparison panels smaller and closer for randomizer tab only */
+    body.randomizer-active .comparison {
+      gap: 18px;
+      margin-top: 12px;
+    }
+    body.randomizer-active .comparison-panel {
+      width: 220px;
+      min-height: 140px;
+      padding: 12px;
+    }
+    body.randomizer-active #compare-heading {
+      font-size: 18px !important;
+      margin-top: 8px !important;
+      margin-bottom: 8px !important;
+    }
+    body.randomizer-active #drug-spin-result ul {
+      font-size: 17px !important;
+      line-height: 1.18 !important;
+      margin-bottom: 6px !important;
     }
   </style>
 </head>
 <body>
 
-<h1>Towns Weapon Stats</h1>
-
-<div class="sidebar">
-  <button onclick="showTier('tier1')">Show T1</button>
-  <button onclick="showTier('tier2')">Show T2</button>
-  <button onclick="showTier('drugs')">Drugs</button>
-  <button onclick="showTier('randomize')">Randomize</button>
-</div>
-
 <div class="weapon-section">
+  <h1 style="text-align:center;">Towns Weapon Stats</h1>
+  <div style="text-align:center; color:#ffd700; font-size:16px; margin-bottom:18px; font-style:italic;">
+    Click on images for stats
+  </div>
+
+  <div class="sidebar">
+    <button onclick="showTier('tier1')">Show T1</button>
+    <button onclick="showTier('tier2')">Show T2</button>
+    <button onclick="showTier('drugs')">Drugs</button>
+    <button onclick="showTier('randomize')">Randomize</button>
+  </div>
+
   <!-- Tier 1 Weapons -->
   <div id="tier1" class="tier">
     <div class="section-title">Tier 1 Weapons</div>
@@ -326,31 +367,41 @@
 
     <!-- Drug Randomizer -->
     <div class="section-title" style="margin-top:40px; color:#ffb86c;">Drug Randomizer</div>
-    <div style="text-align:center; margin-bottom: 20px; color: #8be9fd;">Randomly generate a large batch of drugs (75-100 total)</div>
+    <div style="text-align:center; margin-bottom: 20px; color: #8be9fd;">Randomly generate a large batch of drugs (75-100 total for T1, 100-180 for T2)</div>
+    <div style="text-align:center; margin-bottom: 20px;">
+      <label for="drug-randomize-tier-select" style="margin-right: 10px;">Choose Drug Tier:</label>
+      <select id="drug-randomize-tier-select" style="padding: 5px 10px; font-family: 'Orbitron', sans-serif; background: #222; color: #e0e0e0; border: 1px solid #ffb86c; border-radius: 5px; font-size: 16px; outline: none; transition: border 0.2s;">
+        <option value="t1">T1</option>
+        <option value="t2">T2</option>
+      </select>
+    </div>
     <div style="text-align:center; margin-bottom: 20px;">
       <button onclick="spinDrugs()" style="padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #ffb86c; border: 2px solid #ffb86c; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin Drugs</button>
     </div>
-    <div id="drug-spin-result" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; margin-top: 10px;"></div>
+    <div id="drug-spin-result" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; margin-top: 6px; margin-bottom: 6px;"></div>
   </div>
-</div>
 
-<!-- Comparison Panels -->
-<div class="comparison">
-  <div class="comparison-panel" id="compare1">
-    <h3>Weapon 1</h3>
-    <p>Select a weapon...</p>
-  </div>
-  <div class="comparison-panel" id="compare2">
-    <h3>Weapon 2</h3>
-    <p>Select a weapon...</p>
+  <!-- Comparison Panels (moved inside weapon-section for alignment) -->
+  <div id="compare-heading" style="text-align:center; color:#ffd700; font-size:22px; font-weight:600; margin-top:40px; margin-bottom:18px; font-family:'Orbitron',sans-serif;">Compare 2 Weapons</div>
+  <div class="comparison">
+    <div class="comparison-panel" id="compare1">
+      <h3>Weapon 1</h3>
+      <p>Select a weapon...</p>
+    </div>
+    <div class="comparison-panel" id="compare2">
+      <h3>Weapon 2</h3>
+      <p>Select a weapon...</p>
+    </div>
   </div>
 </div>
 
 <!-- Info Tab -->
 <div class="info-tab" tabindex="0">
-  Info
+  <span style="font-size: 20px; margin-right: 8px;">ℹ️</span> Info
   <div class="info-popup">
-    Made by 0wik<br>Images made by Iconic
+    <div class="info-popup-title" style="font-size:17px; font-weight:600; color:#50fa7b; margin-bottom:7px; letter-spacing:0.5px; text-shadow:none;">Credits</div>
+    <div class="info-credit-line" style="margin-bottom:4px; font-size:15px;">Made by <span style="color:#ffd700;">0wik</span></div>
+    <div class="info-credit-line" style="font-size:15px;">Images by <span style="color:#8be9fd;">Iconic</span></div>
   </div>
 </div>
 
@@ -360,12 +411,21 @@
   function showTier(tierId) {
     document.querySelectorAll('.tier').forEach(t => t.classList.add('hidden'));
     document.getElementById(tierId).classList.remove('hidden');
-    // Hide comparison panels only for drugs tab
+    // Hide comparison panels and heading only for drugs tab
     const comparison = document.querySelector('.comparison');
+    const compareHeading = document.getElementById('compare-heading');
+    // Toggle randomizer-active class on body
+    if (tierId === 'randomize') {
+      document.body.classList.add('randomizer-active');
+    } else {
+      document.body.classList.remove('randomizer-active');
+    }
     if (tierId === 'drugs') {
       comparison.style.display = 'none';
+      compareHeading.style.display = 'none';
     } else {
       comparison.style.display = 'flex';
+      compareHeading.style.display = 'block';
     }
   }
   let compareCount = 0;
@@ -479,53 +539,83 @@
     spinResult.classList.add('spin-anim');
     const tier = document.getElementById('randomize-tier-select').value;
     let results = [];
+    function getRandomIdx(arr) {
+      return Math.floor(Math.random() * arr.length);
+    }
+    function allowDuplicate(existing, arr) {
+      // 20% chance to allow duplicate
+      return Math.random() < 0.2;
+    }
     if (tier === 'test') {
-      // Test Drops: 2 random T1 weapons
+      // Test Drops: 2 random T1 weapons, allow slight chance of duplicate
       if (t1Weapons.length < 2) return;
       let idxs = [];
-      while (idxs.length < 2) {
-        let idx = Math.floor(Math.random() * t1Weapons.length);
-        if (!idxs.includes(idx)) idxs.push(idx);
+      for (let i = 0; i < 2; i++) {
+        if (i > 0 && allowDuplicate(idxs, t1Weapons)) {
+          idxs.push(getRandomIdx(t1Weapons));
+        } else {
+          let idx;
+          do { idx = getRandomIdx(t1Weapons); } while (idxs.includes(idx));
+          idxs.push(idx);
+        }
       }
       results = idxs.map(i => t1Weapons[i]);
     } else if (tier === 'tier1') {
-      // Tier 1: 4 random T1 weapons
+      // Tier 1: 4 random T1 weapons, allow slight chance of duplicate
       if (t1Weapons.length < 4) return;
       let idxs = [];
-      while (idxs.length < 4) {
-        let idx = Math.floor(Math.random() * t1Weapons.length);
-        if (!idxs.includes(idx)) idxs.push(idx);
+      for (let i = 0; i < 4; i++) {
+        if (i > 0 && allowDuplicate(idxs, t1Weapons)) {
+          idxs.push(getRandomIdx(t1Weapons));
+        } else {
+          let idx;
+          do { idx = getRandomIdx(t1Weapons); } while (idxs.includes(idx));
+          idxs.push(idx);
+        }
       }
       results = idxs.map(i => t1Weapons[i]);
     } else if (tier === 'tier2') {
-  // Always 6 weapons total, 1–3 of them are Tier 2
-  const t2Count = Math.floor(Math.random() * 3) + 1; // 1 to 3
-  const t1Count = 6 - t2Count;
-
-  if (t2Weapons.length < t2Count || t1Weapons.length < t1Count) return;
-
-  let t2idxs = [];
-  while (t2idxs.length < t2Count) {
-    let idx = Math.floor(Math.random() * t2Weapons.length);
-    if (!t2idxs.includes(idx)) t2idxs.push(idx);
-  }
-
-  let t1idxs = [];
-  while (t1idxs.length < t1Count) {
-    let idx = Math.floor(Math.random() * t1Weapons.length);
-    if (!t1idxs.includes(idx)) t1idxs.push(idx);
-  }
-
-  results = t2idxs.map(i => t2Weapons[i]).concat(t1idxs.map(i => t1Weapons[i]));
-}
+      // Always 6 weapons total, 1–3 of them are Tier 2
+      // Make Remington Model 870 and TEC-9 slightly rarer
+      const t2Weighted = [
+        t2Weapons[0], // Remington Model 870 (index 0)
+        t2Weapons[1], t2Weapons[1], // MAC-10 (index 1) - double
+        t2Weapons[2], t2Weapons[2], // 1911 (index 2) - double
+        t2Weapons[3], t2Weapons[3], // Lebedev PL14 (index 3) - double
+        t2Weapons[4], // TEC-9 (index 4)
+      ];
+      // So Remington and TEC-9 are each 1/8, others are 2/8 each
+      const t2Count = Math.floor(Math.random() * 3) + 1; // 1 to 3
+      const t1Count = 6 - t2Count;
+      if (t2Weighted.length < t2Count || t1Weapons.length < t1Count) return;
+      let t2idxs = [];
+      let t2Used = [];
+      for (let i = 0; i < t2Count; i++) {
+        if (i > 0 && allowDuplicate(t2Used, t2Weighted)) {
+          t2idxs.push(getRandomIdx(t2Weighted));
+        } else {
+          let idx;
+          do { idx = getRandomIdx(t2Weighted); } while (t2Used.includes(t2Weighted[idx].name));
+          t2idxs.push(idx);
+          t2Used.push(t2Weighted[idx].name);
+        }
+      }
+      let t1idxs = [];
+      for (let i = 0; i < t1Count; i++) {
+        if (i > 0 && allowDuplicate(t1idxs, t1Weapons)) {
+          t1idxs.push(getRandomIdx(t1Weapons));
+        } else {
+          let idx;
+          do { idx = getRandomIdx(t1Weapons); } while (t1idxs.includes(idx));
+          t1idxs.push(idx);
+        }
+      }
+      results = t2idxs.map(i => t2Weighted[i]).concat(t1idxs.map(i => t1Weapons[i]));
+    }
     document.getElementById('spin-result').innerHTML = results.map(w => `
       <div class=\"weapon ${w.tier.startsWith('Tier 1') ? 't1' : 't2'}\" style=\"width:180px;height:180px;flex-direction:column;\" onclick=\"compareWeapon('${w.name.replace(/'/g, "\\'")}', '${w.damage}', '${w.reload}', '${w.tier.replace(/'/g, "\\'")}' )\">
         <img src=\"${w.img}\" alt=\"${w.name}\" style=\"width:100%;height:100%;object-fit:cover;border-radius:10px;\">
-        <div class=\"stats\" style=\"display:block;position:static;background:none;padding:5px 0 0 0;font-size:15px;color:${w.tier.startsWith('Tier 1') ? '#8be9fd' : '#ffd700'};\">
-          <strong>${w.name}</strong><br>Damage: ${w.damage}<br>Reload: ${w.reload}<br>Tier: ${w.tier}
-        </div>
-      </div>
-    `).join('');
+        <div class=\"stats\"><strong>${w.name}</strong><br>Damage: ${w.damage}<br>Reload Speed: ${w.reload}<br>Tier: ${w.tier}</div>\n      </div>\n    `).join('');
   }
 
   // Drug data for drug randomizer
@@ -582,8 +672,14 @@
   ];
 
   function spinDrugs() {
-    // Randomize between 75 and 100 drugs (with repeats)
-    const count = Math.floor(Math.random() * 26) + 75; // 75-100
+    // Get tier from dropdown
+    const tier = document.getElementById('drug-randomize-tier-select')?.value || 't1';
+    let count;
+    if (tier === 't2') {
+      count = Math.floor(Math.random() * 81) + 100; // 100-180
+    } else {
+      count = Math.floor(Math.random() * 26) + 75; // 75-100
+    }
     let results = [];
     for (let i = 0; i < count; i++) {
       const idx = Math.floor(Math.random() * drugs.length);
