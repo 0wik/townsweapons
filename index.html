@@ -171,6 +171,47 @@
       60% { opacity: 1; transform: scale(1.03); }
       100% { opacity: 1; transform: scale(1); }
     }
+    .info-tab {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      z-index: 1200;
+      background: #181a20ee;
+      color: #8be9fd;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      border-radius: 8px 8px 8px 0;
+      box-shadow: 0 2px 8px #0004;
+      padding: 8px 18px 8px 16px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      border: 1.5px solid #444;
+      opacity: 0.85;
+    }
+    .info-tab:hover, .info-tab:focus {
+      background: #23263a;
+      color: #fff;
+      opacity: 1;
+    }
+    .info-popup {
+      display: none;
+      position: absolute;
+      left: 0;
+      bottom: 110%;
+      background: #23263a;
+      color: #fff;
+      font-size: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px #0006;
+      padding: 12px 20px;
+      white-space: pre-line;
+      min-width: 180px;
+      border: 1.5px solid #444;
+      opacity: 0.97;
+    }
+    .info-tab:hover .info-popup, .info-tab:focus .info-popup {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -302,6 +343,14 @@
   <div class="comparison-panel" id="compare2">
     <h3>Weapon 2</h3>
     <p>Select a weapon...</p>
+  </div>
+</div>
+
+<!-- Info Tab -->
+<div class="info-tab" tabindex="0">
+  Info
+  <div class="info-popup">
+    Made by 0wik
   </div>
 </div>
 
