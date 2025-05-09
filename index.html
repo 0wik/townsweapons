@@ -12,6 +12,80 @@
       padding: 20px;
       margin: 0;
     }
+    body.light-mode {
+      background-color: #f6f6f6;
+      color: #23263a;
+    }
+    body.light-mode .sidebar button {
+      background-color: #f6f6f6;
+      color: #a259e6;
+      border: 2px solid #a259e6;
+    }
+    body.light-mode .sidebar button:hover {
+      background-color: #a259e6;
+      color: #fff;
+    }
+    body.light-mode .weapon-section {
+      color: #23263a;
+    }
+    body.light-mode .weapon {
+      background: #fff;
+      border: 2px solid #a259e6 !important;
+    }
+    body.light-mode .weapon img {
+      border: 2px solid #e0e0e0;
+    }
+    body.light-mode .weapon.t1 {
+      border: 2.5px solid #3498db !important;
+      box-shadow: 0 0 15px #3498db33;
+    }
+    body.light-mode .weapon.t2 {
+      border: 2.5px solid #ffd700 !important;
+      box-shadow: 0 0 15px #ffd70033;
+    }
+    body.light-mode .stats {
+      background: rgba(255,255,255,0.92);
+      color: #23263a;
+    }
+    body.light-mode .section-title {
+      color: #a259e6;
+      border-bottom: 1px solid #bbb;
+    }
+    body.light-mode table, body.light-mode th, body.light-mode td {
+      border: 1px solid #bbb;
+    }
+    body.light-mode th {
+      background-color: #e0e0e0;
+      color: #a259e6;
+    }
+    body.light-mode .comparison-panel {
+      background: #f6f6f6;
+      color: #23263a;
+      box-shadow: 0 0 10px #a259e622;
+    }
+    body.light-mode .info-tab {
+      background: linear-gradient(135deg, #e0e0e0 70%, #fff 100%);
+      color: #23263a;
+      border: 2px solid #bbb;
+    }
+    body.light-mode .info-tab:hover, body.light-mode .info-tab:focus {
+      background: linear-gradient(135deg, #fff 80%, #e0e0e0 100%);
+      color: #a259e6;
+    }
+    body.light-mode .info-popup {
+      background: linear-gradient(135deg, #fff 80%, #e0e0e0 100%);
+      color: #23263a;
+      border: 1.5px solid #bbb;
+    }
+    body.light-mode #toggle-btn {
+      background: #ffd700;
+      color: #23263a;
+      border: 1.5px solid #a259e6;
+    }
+    body.light-mode #toggle-btn:hover {
+      background: #fffbe6;
+      color: #a259e6;
+    }
     h1 {
       text-align: center;
       color: #a259e6;
@@ -179,16 +253,16 @@
       background: linear-gradient(135deg, #181a20ee 70%, #23263a 100%);
       color: #8be9fd;
       font-family: 'Orbitron', sans-serif;
-      font-size: 18px;
+      font-size: 15px;
       border-radius: 12px 12px 12px 0;
       box-shadow: 0 4px 16px #0007;
-      padding: 10px 24px 10px 18px;
+      padding: 8px 20px 8px 16px;
+      min-width: 60px;
       cursor: pointer;
       transition: background 0.2s, color 0.2s, box-shadow 0.2s;
       border: 2px solid #444;
       opacity: 0.92;
-      display: flex;
-      align-items: center;
+      display: block;
     }
     .info-tab:hover, .info-tab:focus {
       background: linear-gradient(135deg, #23263a 80%, #181a20ee 100%);
@@ -254,462 +328,480 @@
 </head>
 <body>
 
-<div class="weapon-section">
-  <h1 style="text-align:center;">Towns Weapon Stats</h1>
-  <div style="text-align:center; color:#ffd700; font-size:16px; margin-bottom:18px; font-style:italic;">
-    Click on images for stats
+  <!-- Light/Dark Mode Toggle -->
+  <div id="mode-toggle" style="position:fixed;top:18px;right:28px;z-index:9999;">
+    <button id="toggle-btn" style="background:#23263a;color:#ffd700;border:1.5px solid #444;padding:3px 10px;border-radius:14px;font-family:'Orbitron',sans-serif;font-size:13px;cursor:pointer;transition:background 0.2s,color 0.2s;min-width:70px;">Light Mode</button>
   </div>
 
-  <div class="sidebar">
-    <button onclick="showTier('tier1')">Show T1</button>
-    <button onclick="showTier('tier2')">Show T2</button>
-    <button onclick="showTier('drugs')">Drugs</button>
-    <button onclick="showTier('randomize')">Randomize</button>
-  </div>
+  <div class="weapon-section">
+    <h1 style="text-align:center;">Towns Weapon Stats</h1>
+    <div style="text-align:center; color:#ffd700; font-size:16px; margin-bottom:18px; font-style:italic;">
+      Click on images for stats
+    </div>
 
-  <!-- Tier 1 Weapons -->
-  <div id="tier1" class="tier">
-    <div class="section-title">Tier 1 Weapons</div>
-    <div class="weapon-grid">
-      <div class="weapon" onclick="compareWeapon('Benelli', '18–28', '0.25', 'Tier 1 / Level 5')">
-        <img src="https://imgur.com/E0cmGx5.png" alt="Benelli">
-        <div class="stats"><strong>Benelli</strong><br>Damage: 18–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
+    <div class="sidebar">
+      <button onclick="showTier('tier1')">Show T1</button>
+      <button onclick="showTier('tier2')">Show T2</button>
+      <button onclick="showTier('drugs')">Drugs</button>
+      <button onclick="showTier('randomize')">Randomize</button>
+    </div>
+
+    <!-- Tier 1 Weapons -->
+    <div id="tier1" class="tier">
+      <div class="section-title">Tier 1 Weapons</div>
+      <div class="weapon-grid">
+        <div class="weapon" onclick="compareWeapon('Benelli', '18–28', '0.25', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/E0cmGx5.png" alt="Benelli">
+          <div class="stats"><strong>Benelli</strong><br>Damage: 18–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Glock 43X', '16–25', '0.42', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/CuCPI1O.png" alt="Glock 43X">
+          <div class="stats"><strong>Glock 43X</strong><br>Damage: 16–25<br>Reload Speed: 0.42<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Glock 19X', '17–26', '0.55', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/6kXKKzm.png" alt="Glock 19X">
+          <div class="stats"><strong>Glock 19X</strong><br>Damage: 17–26<br>Reload Speed: 0.55<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Ghost Glock', '22–30', '0.7', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/PWifbp1.png" alt="Ghost Glock">
+          <div class="stats"><strong>Ghost Glock</strong><br>Damage: 22–30<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Glock 17', '18–27', '0.60', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/hZcx4xL.png" alt="Glock 17">
+          <div class="stats"><strong>Glock 17</strong><br>Damage: 18–27<br>Reload Speed: 0.60<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('S&W 657', '15–24', '0.7', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/i6yHy7h.png" alt="S&W 657">
+          <div class="stats"><strong>S&W 657</strong><br>Damage: 15–24<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Walther PPK', '19–28', '0.25', 'Tier 1 / Level 5')">
+          <img src="https://imgur.com/nCnVbqW.png" alt="Walther PPK">
+          <div class="stats"><strong>Walther PPK</strong><br>Damage: 19–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
+        </div>
       </div>
-      <div class="weapon" onclick="compareWeapon('Glock 43X', '16–25', '0.42', 'Tier 1 / Level 5')">
-        <img src="https://imgur.com/CuCPI1O.png" alt="Glock 43X">
-        <div class="stats"><strong>Glock 43X</strong><br>Damage: 16–25<br>Reload Speed: 0.42<br>Tier: Tier 1 / Level 5</div>
+    </div>
+
+    <!-- Tier 2 Weapons -->
+    <div id="tier2" class="tier hidden">
+      <div class="section-title">Tier 2 Weapons</div>
+      <div class="weapon-grid">
+        <div class="weapon" onclick="compareWeapon('Remington Model 870', '35–70', '0.45', 'Tier 2 / Level 10')">
+          <img src="https://imgur.com/dxeebwi.png" alt="Remington Model 870">
+          <div class="stats"><strong>Remington Model 870</strong><br>Damage: 35–70<br>Reload Speed: 0.45<br>Tier: Tier 2 / Level 10</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('MAC-10', '18–26', '0.7', 'Tier 2 / Level 9')">
+          <img src="https://imgur.com/hZLckNY.png" alt="MAC-10">
+          <div class="stats"><strong>MAC-10</strong><br>Damage: 18–26<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 9</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('1911', '25–35', '0.5', 'Tier 2 / Level 8')">
+          <img src="https://imgur.com/SvsMI1u.png" alt="1911">
+          <div class="stats"><strong>1911</strong><br>Damage: 25–35<br>Reload Speed: 0.5<br>Tier: Tier 2 / Level 8</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('Lebedev PL14', '22–32', '0.8', 'Tier 2 / Level 7')">
+          <img src="https://imgur.com/nBD8R9U.png" alt="Lebedev PL14">
+          <div class="stats"><strong>Lebedev PL14</strong><br>Damage: 22–32<br>Reload Speed: 0.8<br>Tier: Tier 2 / Level 7</div>
+        </div>
+        <div class="weapon" onclick="compareWeapon('TEC-9', '20–28', '0.7', 'Tier 2 / Level 10')">
+          <img src="https://imgur.com/IPaF7az.png" alt="TEC-9">
+          <div class="stats"><strong>TEC-9</strong><br>Damage: 20–28<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 10</div>
+        </div>
       </div>
-      <div class="weapon" onclick="compareWeapon('Glock 19X', '17–26', '0.55', 'Tier 1 / Level 5')">
-        <img src="https://imgur.com/6kXKKzm.png" alt="Glock 19X">
-        <div class="stats"><strong>Glock 19X</strong><br>Damage: 17–26<br>Reload Speed: 0.55<br>Tier: Tier 1 / Level 5</div>
+    </div>
+
+    <!-- Drug Stats -->
+    <div id="drugs" class="tier hidden">
+      <div class="section-title">Drugs</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Drug Name</th><th>Effect</th><th>Duration (Seconds)</th><th>Description</th><th>Tier / Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Marijuana</td><td>1–5 HP Regen</td><td>5</td><td>Plant with psychoactive properties, alters mental state</td><td>Tier 1 / Level 5</td></tr>
+          <tr><td>Oxycodone</td><td>5–10 HP Regen</td><td>7</td><td>Used to relieve pain, wide effects on users</td><td>Tier 1 / Level 5</td></tr>
+          <tr><td>Codeine</td><td>1–5 Armor Points</td><td>---</td><td>Used for mild pain, can cause dependence</td><td>Tier 1 / Level 5</td></tr>
+          <tr><td>Cocaine</td><td>Speed / Stamina Boost</td><td>180</td><td>Bitter, habit-forming stimulant from coca leaves</td><td>Tier 2 / Level 5</td></tr>
+          <tr><td>Methamphetamine</td><td>Strength Boost</td><td>600</td><td>Lab-made stimulant, causes euphoria & alertness</td><td>Tier 2 / Level 5</td></tr>
+          <tr><td>Ecstasy / MDMA</td><td>20–40 HP Regen</td><td>15</td><td>Hallucinogen that distorts perception & enjoyment</td><td>Tier 2 / Level 5</td></tr>
+          <tr><td>Fentanyl</td><td>5–10 Armor Points</td><td>---</td><td>Potent opioid, high overdose potential</td><td>Tier 2 / Level 5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Randomize Tab -->
+    <div id="randomize" class="tier hidden">
+      <div class="section-title">Randomize</div>
+      <div style="text-align:center; margin-bottom: 10px; color: #8be9fd;">Simulate a faction drop spin</div>
+      <div style="text-align:center; margin-bottom: 20px;">
+        <label for="randomize-tier-select" style="margin-right: 10px;">Choose Tier:</label>
+        <select id="randomize-tier-select" style="padding: 5px 10px; font-family: 'Orbitron', sans-serif;">
+          <option value="test">Test Drops</option>
+          <option value="tier1">Tier 1</option>
+          <option value="tier2">Tier 2</option>
+        </select>
+        <button onclick="spinWeapons()" style="margin-left: 20px; padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #a259e6; border: 2px solid #a259e6; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin</button>
       </div>
-      <div class="weapon" onclick="compareWeapon('Ghost Glock', '22–30', '0.7', 'Tier 1 / Level 5')">
-        <img src="https://imgur.com/PWifbp1.png" alt="Ghost Glock">
-        <div class="stats"><strong>Ghost Glock</strong><br>Damage: 22–30<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
+      <div id="spin-result" style="display: flex; justify-content: center; gap: 40px; margin-top: 30px;"></div>
+
+      <!-- Drug Randomizer -->
+      <div class="section-title" style="margin-top:40px; color:#ffb86c;">Drug Randomizer</div>
+      <div style="text-align:center; margin-bottom: 20px; color: #8be9fd;">Randomly generate a large batch of drugs (75-100 total for T1, 100-180 for T2)</div>
+      <div style="text-align:center; margin-bottom: 20px;">
+        <label for="drug-randomize-tier-select" style="margin-right: 10px;">Choose Drug Tier:</label>
+        <select id="drug-randomize-tier-select" style="padding: 5px 10px; font-family: 'Orbitron', sans-serif; background: #222; color: #e0e0e0; border: 1px solid #ffb86c; border-radius: 5px; font-size: 16px; outline: none; transition: border 0.2s;">
+          <option value="t1">T1</option>
+          <option value="t2">T2</option>
+        </select>
       </div>
-      <div class="weapon" onclick="compareWeapon('Glock 17', '18–27', '0.60', 'Tier 1 / Level 5')">
-        <img src="https://imgur.com/hZcx4xL.png" alt="Glock 17">
-        <div class="stats"><strong>Glock 17</strong><br>Damage: 18–27<br>Reload Speed: 0.60<br>Tier: Tier 1 / Level 5</div>
+      <div style="text-align:center; margin-bottom: 20px;">
+        <button onclick="spinDrugs()" style="padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #ffb86c; border: 2px solid #ffb86c; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin Drugs</button>
       </div>
-      <div class="weapon" onclick="compareWeapon('S&W 657', '15–24', '0.7', 'Tier 1 / Level 5')">
-        <img src="https://imgur.com/i6yHy7h.png" alt="S&W 657">
-        <div class="stats"><strong>S&W 657</strong><br>Damage: 15–24<br>Reload Speed: 0.7<br>Tier: Tier 1 / Level 5</div>
+      <div id="drug-spin-result" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; margin-top: 6px; margin-bottom: 6px;"></div>
+    </div>
+
+    <!-- Comparison Panels (moved inside weapon-section for alignment) -->
+    <div id="compare-heading" style="text-align:center; color:#ffd700; font-size:22px; font-weight:600; margin-top:40px; margin-bottom:18px; font-family:'Orbitron',sans-serif;">Compare 2 Weapons</div>
+    <div class="comparison">
+      <div class="comparison-panel" id="compare1">
+        <h3>Weapon 1</h3>
+        <p>Select a weapon...</p>
       </div>
-      <div class="weapon" onclick="compareWeapon('Walther PPK', '19–28', '0.25', 'Tier 1 / Level 5')">
-        <img src="https://imgur.com/nCnVbqW.png" alt="Walther PPK">
-        <div class="stats"><strong>Walther PPK</strong><br>Damage: 19–28<br>Reload Speed: 0.25<br>Tier: Tier 1 / Level 5</div>
+      <div class="comparison-panel" id="compare2">
+        <h3>Weapon 2</h3>
+        <p>Select a weapon...</p>
       </div>
     </div>
   </div>
 
-  <!-- Tier 2 Weapons -->
-  <div id="tier2" class="tier hidden">
-    <div class="section-title">Tier 2 Weapons</div>
-    <div class="weapon-grid">
-      <div class="weapon" onclick="compareWeapon('Remington Model 870', '35–70', '0.45', 'Tier 2 / Level 10')">
-        <img src="https://imgur.com/dxeebwi.png" alt="Remington Model 870">
-        <div class="stats"><strong>Remington Model 870</strong><br>Damage: 35–70<br>Reload Speed: 0.45<br>Tier: Tier 2 / Level 10</div>
-      </div>
-      <div class="weapon" onclick="compareWeapon('MAC-10', '18–26', '0.7', 'Tier 2 / Level 9')">
-        <img src="https://imgur.com/hZLckNY.png" alt="MAC-10">
-        <div class="stats"><strong>MAC-10</strong><br>Damage: 18–26<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 9</div>
-      </div>
-      <div class="weapon" onclick="compareWeapon('1911', '25–35', '0.5', 'Tier 2 / Level 8')">
-        <img src="https://imgur.com/SvsMI1u.png" alt="1911">
-        <div class="stats"><strong>1911</strong><br>Damage: 25–35<br>Reload Speed: 0.5<br>Tier: Tier 2 / Level 8</div>
-      </div>
-      <div class="weapon" onclick="compareWeapon('Lebedev PL14', '22–32', '0.8', 'Tier 2 / Level 7')">
-        <img src="https://imgur.com/nBD8R9U.png" alt="Lebedev PL14">
-        <div class="stats"><strong>Lebedev PL14</strong><br>Damage: 22–32<br>Reload Speed: 0.8<br>Tier: Tier 2 / Level 7</div>
-      </div>
-      <div class="weapon" onclick="compareWeapon('TEC-9', '20–28', '0.7', 'Tier 2 / Level 10')">
-        <img src="https://imgur.com/IPaF7az.png" alt="TEC-9">
-        <div class="stats"><strong>TEC-9</strong><br>Damage: 20–28<br>Reload Speed: 0.7<br>Tier: Tier 2 / Level 10</div>
-      </div>
+  <!-- Info Tab -->
+  <div class="info-tab" tabindex="0" style="font-size:15px; padding:8px 20px 8px 16px; border-radius:12px 12px 12px 0; min-width:60px;">
+    Info
+    <div class="info-popup">
+      <div class="info-popup-title" style="font-size:17px; font-weight:600; color:#50fa7b; margin-bottom:7px; letter-spacing:0.5px; text-shadow:none;">Credits</div>
+      <div class="info-credit-line" style="margin-bottom:4px; font-size:15px;">Made by <span style="color:#ffd700;">0wik</span></div>
+      <div class="info-credit-line" style="font-size:15px;">Images by <span style="color:#8be9fd;">Iconic</span></div>
     </div>
   </div>
 
-  <!-- Drug Stats -->
-  <div id="drugs" class="tier hidden">
-    <div class="section-title">Drugs</div>
-    <table>
-      <thead>
-        <tr>
-          <th>Drug Name</th><th>Effect</th><th>Duration (Seconds)</th><th>Description</th><th>Tier / Level</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Marijuana</td><td>1–5 HP Regen</td><td>5</td><td>Plant with psychoactive properties, alters mental state</td><td>Tier 1 / Level 5</td></tr>
-        <tr><td>Oxycodone</td><td>5–10 HP Regen</td><td>7</td><td>Used to relieve pain, wide effects on users</td><td>Tier 1 / Level 5</td></tr>
-        <tr><td>Codeine</td><td>1–5 Armor Points</td><td>---</td><td>Used for mild pain, can cause dependence</td><td>Tier 1 / Level 5</td></tr>
-        <tr><td>Cocaine</td><td>Speed / Stamina Boost</td><td>180</td><td>Bitter, habit-forming stimulant from coca leaves</td><td>Tier 2 / Level 5</td></tr>
-        <tr><td>Methamphetamine</td><td>Strength Boost</td><td>600</td><td>Lab-made stimulant, causes euphoria & alertness</td><td>Tier 2 / Level 5</td></tr>
-        <tr><td>Ecstasy / MDMA</td><td>20–40 HP Regen</td><td>15</td><td>Hallucinogen that distorts perception & enjoyment</td><td>Tier 2 / Level 5</td></tr>
-        <tr><td>Fentanyl</td><td>5–10 Armor Points</td><td>---</td><td>Potent opioid, high overdose potential</td><td>Tier 2 / Level 5</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <audio id="spin-sound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae3b2.mp3" preload="auto"></audio>
 
-  <!-- Randomize Tab -->
-  <div id="randomize" class="tier hidden">
-    <div class="section-title">Randomize</div>
-    <div style="text-align:center; margin-bottom: 10px; color: #8be9fd;">Simulate a faction drop spin</div>
-    <div style="text-align:center; margin-bottom: 20px;">
-      <label for="randomize-tier-select" style="margin-right: 10px;">Choose Tier:</label>
-      <select id="randomize-tier-select" style="padding: 5px 10px; font-family: 'Orbitron', sans-serif;">
-        <option value="test">Test Drops</option>
-        <option value="tier1">Tier 1</option>
-        <option value="tier2">Tier 2</option>
-      </select>
-      <button onclick="spinWeapons()" style="margin-left: 20px; padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #a259e6; border: 2px solid #a259e6; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin</button>
-    </div>
-    <div id="spin-result" style="display: flex; justify-content: center; gap: 40px; margin-top: 30px;"></div>
-
-    <!-- Drug Randomizer -->
-    <div class="section-title" style="margin-top:40px; color:#ffb86c;">Drug Randomizer</div>
-    <div style="text-align:center; margin-bottom: 20px; color: #8be9fd;">Randomly generate a large batch of drugs (75-100 total for T1, 100-180 for T2)</div>
-    <div style="text-align:center; margin-bottom: 20px;">
-      <label for="drug-randomize-tier-select" style="margin-right: 10px;">Choose Drug Tier:</label>
-      <select id="drug-randomize-tier-select" style="padding: 5px 10px; font-family: 'Orbitron', sans-serif; background: #222; color: #e0e0e0; border: 1px solid #ffb86c; border-radius: 5px; font-size: 16px; outline: none; transition: border 0.2s;">
-        <option value="t1">T1</option>
-        <option value="t2">T2</option>
-      </select>
-    </div>
-    <div style="text-align:center; margin-bottom: 20px;">
-      <button onclick="spinDrugs()" style="padding: 8px 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; background-color: #282828; color: #ffb86c; border: 2px solid #ffb86c; border-radius: 5px; cursor: pointer; transition: 0.3s;">Spin Drugs</button>
-    </div>
-    <div id="drug-spin-result" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; margin-top: 6px; margin-bottom: 6px;"></div>
-  </div>
-
-  <!-- Comparison Panels (moved inside weapon-section for alignment) -->
-  <div id="compare-heading" style="text-align:center; color:#ffd700; font-size:22px; font-weight:600; margin-top:40px; margin-bottom:18px; font-family:'Orbitron',sans-serif;">Compare 2 Weapons</div>
-  <div class="comparison">
-    <div class="comparison-panel" id="compare1">
-      <h3>Weapon 1</h3>
-      <p>Select a weapon...</p>
-    </div>
-    <div class="comparison-panel" id="compare2">
-      <h3>Weapon 2</h3>
-      <p>Select a weapon...</p>
-    </div>
-  </div>
-</div>
-
-<!-- Info Tab -->
-<div class="info-tab" tabindex="0">
-  <span style="font-size: 20px; margin-right: 8px;">ℹ️</span> Info
-  <div class="info-popup">
-    <div class="info-popup-title" style="font-size:17px; font-weight:600; color:#50fa7b; margin-bottom:7px; letter-spacing:0.5px; text-shadow:none;">Credits</div>
-    <div class="info-credit-line" style="margin-bottom:4px; font-size:15px;">Made by <span style="color:#ffd700;">0wik</span></div>
-    <div class="info-credit-line" style="font-size:15px;">Images by <span style="color:#8be9fd;">Iconic</span></div>
-  </div>
-</div>
-
-<audio id="spin-sound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae3b2.mp3" preload="auto"></audio>
-
-<script>
-  function showTier(tierId) {
-    document.querySelectorAll('.tier').forEach(t => t.classList.add('hidden'));
-    document.getElementById(tierId).classList.remove('hidden');
-    // Hide comparison panels and heading only for drugs tab
-    const comparison = document.querySelector('.comparison');
-    const compareHeading = document.getElementById('compare-heading');
-    // Toggle randomizer-active class on body
-    if (tierId === 'randomize') {
-      document.body.classList.add('randomizer-active');
-    } else {
-      document.body.classList.remove('randomizer-active');
-    }
-    if (tierId === 'drugs') {
-      comparison.style.display = 'none';
-      compareHeading.style.display = 'none';
-    } else {
-      comparison.style.display = 'flex';
-      compareHeading.style.display = 'block';
-    }
-  }
-  let compareCount = 0;
-  function compareWeapon(name, damage, reload, tier) {
-    const content = `<strong>${name}</strong><br>Damage: ${damage}<br>Reload Speed: ${reload}<br>Tier: ${tier}`;
-    if (compareCount % 2 === 0) {
-      document.getElementById('compare1').innerHTML = '<h3>Weapon 1</h3><p>' + content + '</p>';
-    } else {
-      document.getElementById('compare2').innerHTML = '<h3>Weapon 2</h3><p>' + content + '</p>';
-    }
-    compareCount++;
-  }
-
-  // Weapon data for randomizer
-  const t1Weapons = [
-    {
-      name: 'Benelli',
-      img: 'https://imgur.com/E0cmGx5.png',
-      damage: '18–28',
-      reload: '0.25',
-      tier: 'Tier 1 / Level 5'
-    },
-    {
-      name: 'Glock 43X',
-      img: 'https://imgur.com/CuCPI1O.png',
-      damage: '16–25',
-      reload: '0.42',
-      tier: 'Tier 1 / Level 5'
-    },
-    {
-      name: 'Glock 19X',
-      img: 'https://imgur.com/6kXKKzm.png',
-      damage: '17–26',
-      reload: '0.55',
-      tier: 'Tier 1 / Level 5'
-    },
-    {
-      name: 'Ghost Glock',
-      img: 'https://imgur.com/PWifbp1.png',
-      damage: '22–30',
-      reload: '0.7',
-      tier: 'Tier 1 / Level 5'
-    },
-    {
-      name: 'Glock 17',
-      img: 'https://imgur.com/hZcx4xL.png',
-      damage: '18–27',
-      reload: '0.60',
-      tier: 'Tier 1 / Level 5'
-    },
-    {
-      name: 'S&W 657',
-      img: 'https://imgur.com/i6yHy7h.png',
-      damage: '15–24',
-      reload: '0.7',
-      tier: 'Tier 1 / Level 5'
-    },
-    {
-      name: 'Walther PPK',
-      img: 'https://imgur.com/nCnVbqW.png',
-      damage: '19–28',
-      reload: '0.25',
-      tier: 'Tier 1 / Level 5'
-    }
-  ];
-  const t2Weapons = [
-    {
-      name: 'Remington Model 870',
-      img: 'https://imgur.com/dxeebwi.png',
-      damage: '35–70',
-      reload: '0.45',
-      tier: 'Tier 2 / Level 10'
-    },
-    {
-      name: 'MAC-10',
-      img: 'https://imgur.com/hZLckNY.png',
-      damage: '18–26',
-      reload: '0.7',
-      tier: 'Tier 2 / Level 9'
-    },
-    {
-      name: '1911',
-      img: 'https://imgur.com/SvsMI1u.png',
-      damage: '25–35',
-      reload: '0.5',
-      tier: 'Tier 2 / Level 8'
-    },
-    {
-      name: 'Lebedev PL14',
-      img: 'https://imgur.com/nBD8R9U.png',
-      damage: '22–32',
-      reload: '0.8',
-      tier: 'Tier 2 / Level 7'
-    },
-    {
-      name: 'TEC-9',
-      img: 'https://imgur.com/IPaF7az.png',
-      damage: '20–28',
-      reload: '0.7',
-      tier: 'Tier 2 / Level 10'
-    }
-  ];
-  function spinWeapons() {
-    // Play sound
-    document.getElementById('spin-sound').currentTime = 0;
-    document.getElementById('spin-sound').play();
-    // Spin animation effect
-    const spinResult = document.getElementById('spin-result');
-    spinResult.classList.remove('spin-anim');
-    void spinResult.offsetWidth; // force reflow
-    spinResult.classList.add('spin-anim');
-    const tier = document.getElementById('randomize-tier-select').value;
-    let results = [];
-    function getRandomIdx(arr) {
-      return Math.floor(Math.random() * arr.length);
-    }
-    function allowDuplicate(existing, arr) {
-      // 20% chance to allow duplicate
-      return Math.random() < 0.2;
-    }
-    if (tier === 'test') {
-      // Test Drops: 2 random T1 weapons, allow slight chance of duplicate
-      if (t1Weapons.length < 2) return;
-      let idxs = [];
-      for (let i = 0; i < 2; i++) {
-        if (i > 0 && allowDuplicate(idxs, t1Weapons)) {
-          idxs.push(getRandomIdx(t1Weapons));
-        } else {
-          let idx;
-          do { idx = getRandomIdx(t1Weapons); } while (idxs.includes(idx));
-          idxs.push(idx);
-        }
+  <script>
+    function showTier(tierId) {
+      document.querySelectorAll('.tier').forEach(t => t.classList.add('hidden'));
+      document.getElementById(tierId).classList.remove('hidden');
+      // Hide comparison panels and heading only for drugs tab
+      const comparison = document.querySelector('.comparison');
+      const compareHeading = document.getElementById('compare-heading');
+      // Toggle randomizer-active class on body
+      if (tierId === 'randomize') {
+        document.body.classList.add('randomizer-active');
+      } else {
+        document.body.classList.remove('randomizer-active');
       }
-      results = idxs.map(i => t1Weapons[i]);
-    } else if (tier === 'tier1') {
-      // Tier 1: 4 random T1 weapons, allow slight chance of duplicate
-      if (t1Weapons.length < 4) return;
-      let idxs = [];
-      for (let i = 0; i < 4; i++) {
-        if (i > 0 && allowDuplicate(idxs, t1Weapons)) {
-          idxs.push(getRandomIdx(t1Weapons));
-        } else {
-          let idx;
-          do { idx = getRandomIdx(t1Weapons); } while (idxs.includes(idx));
-          idxs.push(idx);
-        }
+      if (tierId === 'drugs') {
+        comparison.style.display = 'none';
+        compareHeading.style.display = 'none';
+      } else {
+        comparison.style.display = 'flex';
+        compareHeading.style.display = 'block';
       }
-      results = idxs.map(i => t1Weapons[i]);
-    } else if (tier === 'tier2') {
-      // Always 6 weapons total, 1–3 of them are Tier 2
-      // Make Remington Model 870 and TEC-9 slightly rarer
-      const t2Weighted = [
-        t2Weapons[0], // Remington Model 870 (index 0)
-        t2Weapons[1], t2Weapons[1], // MAC-10 (index 1) - double
-        t2Weapons[2], t2Weapons[2], // 1911 (index 2) - double
-        t2Weapons[3], t2Weapons[3], // Lebedev PL14 (index 3) - double
-        t2Weapons[4], // TEC-9 (index 4)
-      ];
-      // So Remington and TEC-9 are each 1/8, others are 2/8 each
-      const t2Count = Math.floor(Math.random() * 3) + 1; // 1 to 3
-      const t1Count = 6 - t2Count;
-      if (t2Weighted.length < t2Count || t1Weapons.length < t1Count) return;
-      let t2idxs = [];
-      let t2Used = [];
-      for (let i = 0; i < t2Count; i++) {
-        if (i > 0 && allowDuplicate(t2Used, t2Weighted)) {
-          t2idxs.push(getRandomIdx(t2Weighted));
-        } else {
-          let idx;
-          do { idx = getRandomIdx(t2Weighted); } while (t2Used.includes(t2Weighted[idx].name));
-          t2idxs.push(idx);
-          t2Used.push(t2Weighted[idx].name);
-        }
-      }
-      let t1idxs = [];
-      for (let i = 0; i < t1Count; i++) {
-        if (i > 0 && allowDuplicate(t1idxs, t1Weapons)) {
-          t1idxs.push(getRandomIdx(t1Weapons));
-        } else {
-          let idx;
-          do { idx = getRandomIdx(t1Weapons); } while (t1idxs.includes(idx));
-          t1idxs.push(idx);
-        }
-      }
-      results = t2idxs.map(i => t2Weighted[i]).concat(t1idxs.map(i => t1Weapons[i]));
     }
-    document.getElementById('spin-result').innerHTML = results.map(w => `
-      <div class=\"weapon ${w.tier.startsWith('Tier 1') ? 't1' : 't2'}\" style=\"width:180px;height:180px;flex-direction:column;\" onclick=\"compareWeapon('${w.name.replace(/'/g, "\\'")}', '${w.damage}', '${w.reload}', '${w.tier.replace(/'/g, "\\'")}' )\">
-        <img src=\"${w.img}\" alt=\"${w.name}\" style=\"width:100%;height:100%;object-fit:cover;border-radius:10px;\">
-        <div class=\"stats\"><strong>${w.name}</strong><br>Damage: ${w.damage}<br>Reload Speed: ${w.reload}<br>Tier: ${w.tier}</div>\n      </div>\n    `).join('');
-  }
+    let compareCount = 0;
+    function compareWeapon(name, damage, reload, tier) {
+      const content = `<strong>${name}</strong><br>Damage: ${damage}<br>Reload Speed: ${reload}<br>Tier: ${tier}`;
+      if (compareCount % 2 === 0) {
+        document.getElementById('compare1').innerHTML = '<h3>Weapon 1</h3><p>' + content + '</p>';
+      } else {
+        document.getElementById('compare2').innerHTML = '<h3>Weapon 2</h3><p>' + content + '</p>';
+      }
+      compareCount++;
+    }
 
-  // Drug data for drug randomizer
-  const drugs = [
-    {
-      name: 'Marijuana',
-      effect: '1–5 HP Regen',
-      duration: '5',
-      description: 'Plant with psychoactive properties, alters mental state',
-      tier: 'Tier 1 / Level 5'
-    },
-    {
-      name: 'Oxycodone',
-      effect: '5–10 HP Regen',
-      duration: '7',
-      description: 'Used to relieve pain, wide effects on users',
-      tier: 'Tier 1 / Level 5'
-    },
-    {
-      name: 'Codeine',
-      effect: '1–5 Armor Points',
-      duration: '---',
-      description: 'Used for mild pain, can cause dependence',
-      tier: 'Tier 1 / Level 5'
-    },
-    {
-      name: 'Cocaine',
-      effect: 'Speed / Stamina Boost',
-      duration: '180',
-      description: 'Bitter, habit-forming stimulant from coca leaves',
-      tier: 'Tier 2 / Level 5'
-    },
-    {
-      name: 'Methamphetamine',
-      effect: 'Strength Boost',
-      duration: '600',
-      description: 'Lab-made stimulant, causes euphoria & alertness',
-      tier: 'Tier 2 / Level 5'
-    },
-    {
-      name: 'Ecstasy / MDMA',
-      effect: '20–40 HP Regen',
-      duration: '15',
-      description: 'Hallucinogen that distorts perception & enjoyment',
-      tier: 'Tier 2 / Level 5'
-    },
-    {
-      name: 'Fentanyl',
-      effect: '5–10 Armor Points',
-      duration: '---',
-      description: 'Potent opioid, high overdose potential',
-      tier: 'Tier 2 / Level 5'
+    // Weapon data for randomizer
+    const t1Weapons = [
+      {
+        name: 'Benelli',
+        img: 'https://imgur.com/E0cmGx5.png',
+        damage: '18–28',
+        reload: '0.25',
+        tier: 'Tier 1 / Level 5'
+      },
+      {
+        name: 'Glock 43X',
+        img: 'https://imgur.com/CuCPI1O.png',
+        damage: '16–25',
+        reload: '0.42',
+        tier: 'Tier 1 / Level 5'
+      },
+      {
+        name: 'Glock 19X',
+        img: 'https://imgur.com/6kXKKzm.png',
+        damage: '17–26',
+        reload: '0.55',
+        tier: 'Tier 1 / Level 5'
+      },
+      {
+        name: 'Ghost Glock',
+        img: 'https://imgur.com/PWifbp1.png',
+        damage: '22–30',
+        reload: '0.7',
+        tier: 'Tier 1 / Level 5'
+      },
+      {
+        name: 'Glock 17',
+        img: 'https://imgur.com/hZcx4xL.png',
+        damage: '18–27',
+        reload: '0.60',
+        tier: 'Tier 1 / Level 5'
+      },
+      {
+        name: 'S&W 657',
+        img: 'https://imgur.com/i6yHy7h.png',
+        damage: '15–24',
+        reload: '0.7',
+        tier: 'Tier 1 / Level 5'
+      },
+      {
+        name: 'Walther PPK',
+        img: 'https://imgur.com/nCnVbqW.png',
+        damage: '19–28',
+        reload: '0.25',
+        tier: 'Tier 1 / Level 5'
+      }
+    ];
+    const t2Weapons = [
+      {
+        name: 'Remington Model 870',
+        img: 'https://imgur.com/dxeebwi.png',
+        damage: '35–70',
+        reload: '0.45',
+        tier: 'Tier 2 / Level 10'
+      },
+      {
+        name: 'MAC-10',
+        img: 'https://imgur.com/hZLckNY.png',
+        damage: '18–26',
+        reload: '0.7',
+        tier: 'Tier 2 / Level 9'
+      },
+      {
+        name: '1911',
+        img: 'https://imgur.com/SvsMI1u.png',
+        damage: '25–35',
+        reload: '0.5',
+        tier: 'Tier 2 / Level 8'
+      },
+      {
+        name: 'Lebedev PL14',
+        img: 'https://imgur.com/nBD8R9U.png',
+        damage: '22–32',
+        reload: '0.8',
+        tier: 'Tier 2 / Level 7'
+      },
+      {
+        name: 'TEC-9',
+        img: 'https://imgur.com/IPaF7az.png',
+        damage: '20–28',
+        reload: '0.7',
+        tier: 'Tier 2 / Level 10'
+      }
+    ];
+    function spinWeapons() {
+      // Play sound
+      document.getElementById('spin-sound').currentTime = 0;
+      document.getElementById('spin-sound').play();
+      // Spin animation effect
+      const spinResult = document.getElementById('spin-result');
+      spinResult.classList.remove('spin-anim');
+      void spinResult.offsetWidth; // force reflow
+      spinResult.classList.add('spin-anim');
+      const tier = document.getElementById('randomize-tier-select').value;
+      let results = [];
+      function getRandomIdx(arr) {
+        return Math.floor(Math.random() * arr.length);
+      }
+      function allowDuplicate(existing, arr) {
+        // 20% chance to allow duplicate
+        return Math.random() < 0.2;
+      }
+      if (tier === 'test') {
+        // Test Drops: 2 random T1 weapons, allow slight chance of duplicate
+        if (t1Weapons.length < 2) return;
+        let idxs = [];
+        for (let i = 0; i < 2; i++) {
+          if (i > 0 && allowDuplicate(idxs, t1Weapons)) {
+            idxs.push(getRandomIdx(t1Weapons));
+          } else {
+            let idx;
+            do { idx = getRandomIdx(t1Weapons); } while (idxs.includes(idx));
+            idxs.push(idx);
+          }
+        }
+        results = idxs.map(i => t1Weapons[i]);
+      } else if (tier === 'tier1') {
+        // Tier 1: 4 random T1 weapons, allow slight chance of duplicate
+        if (t1Weapons.length < 4) return;
+        let idxs = [];
+        for (let i = 0; i < 4; i++) {
+          if (i > 0 && allowDuplicate(idxs, t1Weapons)) {
+            idxs.push(getRandomIdx(t1Weapons));
+          } else {
+            let idx;
+            do { idx = getRandomIdx(t1Weapons); } while (idxs.includes(idx));
+            idxs.push(idx);
+          }
+        }
+        results = idxs.map(i => t1Weapons[i]);
+      } else if (tier === 'tier2') {
+        // Always 6 weapons total, 1–3 of them are Tier 2
+        // Make Remington Model 870 and TEC-9 slightly rarer
+        const t2Weighted = [
+          t2Weapons[0], // Remington Model 870 (index 0)
+          t2Weapons[1], t2Weapons[1], // MAC-10 (index 1) - double
+          t2Weapons[2], t2Weapons[2], // 1911 (index 2) - double
+          t2Weapons[3], t2Weapons[3], // Lebedev PL14 (index 3) - double
+          t2Weapons[4], // TEC-9 (index 4)
+        ];
+        // So Remington and TEC-9 are each 1/8, others are 2/8 each
+        const t2Count = Math.floor(Math.random() * 3) + 1; // 1 to 3
+        const t1Count = 6 - t2Count;
+        if (t2Weighted.length < t2Count || t1Weapons.length < t1Count) return;
+        let t2idxs = [];
+        let t2Used = [];
+        for (let i = 0; i < t2Count; i++) {
+          if (i > 0 && allowDuplicate(t2Used, t2Weighted)) {
+            t2idxs.push(getRandomIdx(t2Weighted));
+          } else {
+            let idx;
+            do { idx = getRandomIdx(t2Weighted); } while (t2Used.includes(t2Weighted[idx].name));
+            t2idxs.push(idx);
+            t2Used.push(t2Weighted[idx].name);
+          }
+        }
+        let t1idxs = [];
+        for (let i = 0; i < t1Count; i++) {
+          if (i > 0 && allowDuplicate(t1idxs, t1Weapons)) {
+            t1idxs.push(getRandomIdx(t1Weapons));
+          } else {
+            let idx;
+            do { idx = getRandomIdx(t1Weapons); } while (t1idxs.includes(idx));
+            t1idxs.push(idx);
+          }
+        }
+        results = t2idxs.map(i => t2Weighted[i]).concat(t1idxs.map(i => t1Weapons[i]));
+      }
+      document.getElementById('spin-result').innerHTML = results.map(w => `
+        <div class=\"weapon ${w.tier.startsWith('Tier 1') ? 't1' : 't2'}\" style=\"width:180px;height:180px;flex-direction:column;\" onclick=\"compareWeapon('${w.name.replace(/'/g, "\\'")}', '${w.damage}', '${w.reload}', '${w.tier.replace(/'/g, "\\'")}' )\">
+          <img src=\"${w.img}\" alt=\"${w.name}\" style=\"width:100%;height:100%;object-fit:cover;border-radius:10px;\">
+          <div class=\"stats\"><strong>${w.name}</strong><br>Damage: ${w.damage}<br>Reload Speed: ${w.reload}<br>Tier: ${w.tier}</div>\n      </div>\n    `).join('');
     }
-  ];
 
-  function spinDrugs() {
-    // Get tier from dropdown
-    const tier = document.getElementById('drug-randomize-tier-select')?.value || 't1';
-    let count;
-    if (tier === 't2') {
-      count = Math.floor(Math.random() * 81) + 100; // 100-180
-    } else {
-      count = Math.floor(Math.random() * 26) + 75; // 75-100
+    // Drug data for drug randomizer
+    const drugs = [
+      {
+        name: 'Marijuana',
+        effect: '1–5 HP Regen',
+        duration: '5',
+        description: 'Plant with psychoactive properties, alters mental state',
+        tier: 'Tier 1 / Level 5'
+      },
+      {
+        name: 'Oxycodone',
+        effect: '5–10 HP Regen',
+        duration: '7',
+        description: 'Used to relieve pain, wide effects on users',
+        tier: 'Tier 1 / Level 5'
+      },
+      {
+        name: 'Codeine',
+        effect: '1–5 Armor Points',
+        duration: '---',
+        description: 'Used for mild pain, can cause dependence',
+        tier: 'Tier 1 / Level 5'
+      },
+      {
+        name: 'Cocaine',
+        effect: 'Speed / Stamina Boost',
+        duration: '180',
+        description: 'Bitter, habit-forming stimulant from coca leaves',
+        tier: 'Tier 2 / Level 5'
+      },
+      {
+        name: 'Methamphetamine',
+        effect: 'Strength Boost',
+        duration: '600',
+        description: 'Lab-made stimulant, causes euphoria & alertness',
+        tier: 'Tier 2 / Level 5'
+      },
+      {
+        name: 'Ecstasy / MDMA',
+        effect: '20–40 HP Regen',
+        duration: '15',
+        description: 'Hallucinogen that distorts perception & enjoyment',
+        tier: 'Tier 2 / Level 5'
+      },
+      {
+        name: 'Fentanyl',
+        effect: '5–10 Armor Points',
+        duration: '---',
+        description: 'Potent opioid, high overdose potential',
+        tier: 'Tier 2 / Level 5'
+      }
+    ];
+
+    function spinDrugs() {
+      // Get tier from dropdown
+      const tier = document.getElementById('drug-randomize-tier-select')?.value || 't1';
+      let count;
+      if (tier === 't2') {
+        count = Math.floor(Math.random() * 81) + 100; // 100-180
+      } else {
+        count = Math.floor(Math.random() * 26) + 75; // 75-100
+      }
+      let results = [];
+      for (let i = 0; i < count; i++) {
+        const idx = Math.floor(Math.random() * drugs.length);
+        results.push(drugs[idx].name);
+      }
+      // Count occurrences
+      const summary = {};
+      results.forEach(name => {
+        summary[name] = (summary[name] || 0) + 1;
+      });
+      // Sort by count descending
+      const sorted = Object.entries(summary).sort((a, b) => b[1] - a[1]);
+      document.getElementById('drug-spin-result').innerHTML =
+        '<ul style="list-style: none; padding: 0; text-align: left; color: #fff; font-size: 18px;">' +
+        sorted.map(([name, count]) => `<li style=\"margin-bottom:6px;\">- <span style=\"color:#ffb86c;\">${name}</span>: <span style=\"color:#8be9fd;\">${count}</span></li>`).join('') +
+        '</ul>';
     }
-    let results = [];
-    for (let i = 0; i < count; i++) {
-      const idx = Math.floor(Math.random() * drugs.length);
-      results.push(drugs[idx].name);
-    }
-    // Count occurrences
-    const summary = {};
-    results.forEach(name => {
-      summary[name] = (summary[name] || 0) + 1;
+
+    // Add t1/t2 classes to grid weapons
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.weapon-grid .weapon').forEach(el => {
+        const stats = el.querySelector('.stats');
+        if (stats && stats.innerHTML.includes('Tier 1')) {
+          el.classList.add('t1');
+        } else if (stats && stats.innerHTML.includes('Tier 2')) {
+          el.classList.add('t2');
+        }
+      });
     });
-    // Sort by count descending
-    const sorted = Object.entries(summary).sort((a, b) => b[1] - a[1]);
-    document.getElementById('drug-spin-result').innerHTML =
-      '<ul style="list-style: none; padding: 0; text-align: left; color: #fff; font-size: 18px;">' +
-      sorted.map(([name, count]) => `<li style=\"margin-bottom:6px;\">- <span style=\"color:#ffb86c;\">${name}</span>: <span style=\"color:#8be9fd;\">${count}</span></li>`).join('') +
-      '</ul>';
-  }
 
-  // Add t1/t2 classes to grid weapons
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.weapon-grid .weapon').forEach(el => {
-      const stats = el.querySelector('.stats');
-      if (stats && stats.innerHTML.includes('Tier 1')) {
-        el.classList.add('t1');
-      } else if (stats && stats.innerHTML.includes('Tier 2')) {
-        el.classList.add('t2');
-      }
+    // Light/Dark Mode Toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('toggle-btn');
+      btn.addEventListener('click', function() {
+        document.body.classList.toggle('light-mode');
+        if(document.body.classList.contains('light-mode')) {
+          btn.innerHTML = 'Dark Mode';
+        } else {
+          btn.innerHTML = 'Light Mode';
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
